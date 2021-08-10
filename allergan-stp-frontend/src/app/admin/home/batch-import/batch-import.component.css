@@ -1,0 +1,113 @@
+/* ==============Batch Import================= */
+.batch_import_inner {
+	background: #fff;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 30px 35px;
+    box-shadow: 1px 1px 10px 0px rgba(0,0,0, 0.1);
+    position: relative;
+}
+.batch_import_type_inner {
+	margin: 0px;
+}
+label {
+    cursor: pointer;
+}
+.info_txt {
+	padding: 0px;
+}
+.info_txt p {
+	padding: 15px;
+    background-color: #ecf7ec;
+    color: #169a1e;
+	font-size: 14px;
+	border-radius: 8px;
+}
+.import_formate {
+	padding: 0px;
+}
+.import_list {
+	list-style: none;
+    padding: 12px 15px;
+    display: flex;
+    background-color: #ebebeb;
+    border-radius: 8px;
+}
+.import_list li{
+	display: inline-block;
+	padding: 0px;
+}
+.import_list li a{
+	color: #4b4b4b;
+	font-size: 14px;
+    text-decoration: none;
+    cursor:pointer;
+}
+.import_list li a:hover {
+	font-weight: 700;
+}
+.upload_file {
+	padding: 0px;
+}
+.upload_file > p {
+	border-bottom: 1px solid #ececec;
+	padding-bottom: 10px;
+}
+.upload_users_wrap > h3 {
+	display: inline-block;
+    margin-top: 10px;
+}
+
+.upload_assets_wrap > h3 {
+	display: inline-block;
+    margin-top: 13px;
+}
+
+.upload_questions_wrap > h3 {
+	display: inline-block;
+    margin-top: 16px;
+}
+.form-title {
+    float: left;
+}
+.upload_sheet {
+	display: inline-block;
+	float: right;
+}
+.upload_sheet > .batch_upload[type="file"] {
+	display: none;
+}
+.upload_sheet > label {
+    width: 230px;
+    box-shadow: 3px 3px 3px 0px rgba(0,0,0, 0.1);
+    padding: 10px 15px 10px 100px;
+    margin: 0px;
+    border-radius: 200px;
+    text-align: right;
+    color: #4b4b4b;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.upload_sheet > label::before {
+	content: 'Choose file';
+    display: inline-block;
+    font-size: 12px;
+    top: 50%;
+    left: 8px;
+    position: absolute;
+    transform: translateY(-50%);
+    box-shadow: 3px 3px 8px 0px rgba(0,0,0, 0.1);
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+.btn_upload {
+	padding: 6px 25px;
+    background-color: #626262;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 200px;
+    float: right;
+    margin: 8px 15px;
+}

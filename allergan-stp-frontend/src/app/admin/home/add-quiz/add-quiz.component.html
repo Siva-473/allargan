@@ -1,0 +1,108 @@
+<app-admin-top-nav></app-admin-top-nav>
+<main class="main_container">
+  <div class="container">
+      <div class="main_con_inner">
+    
+
+          <app-admin-side-nav></app-admin-side-nav>
+
+          <!-- right section  start -->
+          <section class="right_panel">
+<!-- Quiz Starts -->
+                      
+<div class="quiz_wrap hide_tab active"  id="pop_6">
+    
+     <div class="quiz_Inner">
+        <div class="rph_header">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                    <h5>Add Quiz</h5>
+                </div>
+            </div>
+        </div>
+        <div class="right_panel_box2">
+          <form class="user_fileds" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <label for="lastname">Title</label>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <input type="text" class="form-control" placeholder="" name="title" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required minlength="3" maxlength="30">
+                      <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                          <div *ngIf="title.errors.required">Title is required</div>
+                      </div>
+                      <div *ngIf="title.errors?.minlength" class="invalid-feedback">
+                              Title must be at least 3 characters long.
+                      </div> 
+                      <div *ngIf="title.errors?.maxlength" class="invalid-feedback"> 
+                              Title can be max 30 characters long.
+                      </div>
+                    </div>
+                  </div>                 
+                </div>
+            </div>
+          
+
+          <!-- <div class="applyFilers mt-4 " name="domain">
+                <select class="custom-select slects_option"  #assetType (change)="getThearpeuticAreas($event.target.value)" >
+                      <option selected="">Select AT’s</option>
+                      <option *ngFor="let assetType of assetTypes ; index as i" [value]="assetType.id">{{assetType.userName}}</option>
+                </select>
+                <select class="custom-select slects_option" #ta  (change)="getdiseaseAndProducts($event.target.value)">
+                    <option selected="">Select TA’s</option>
+                    <option *ngFor="let ta of therapeuticAreaList ; index as i" [value]="ta">{{ta}}</option>
+                </select>    
+                <select class="custom-select slects_option" #disease >
+                    <option selected="">Select DS’s</option>
+                    <option *ngFor="let dis of diseaseList ; index as i" [value]="dis">{{dis}}</option>                        
+                </select>    
+                <select class="custom-select slects_option" #product>
+                    <option selected="">Select Product</option>
+                    <option *ngFor="let prod of productList ; index as i" [value]="prod">{{prod}}</option>
+                </select> 
+           </div> -->
+
+          <div class="row questSelectedWrap">
+            <div class="col-12 col-sm-12 questSelected">
+              <span class="invalid-txt">{{cloneMessage}}</span>
+              <div class="questHeader">
+                <h2><span class="questCount">{{questionCount}}</span> Questions Selected</h2>
+                <h3>Title</h3>
+              </div>
+              <div class="questChecked">
+                <ul>
+                  <li class="questList" *ngFor="let question of questions ; index as i">
+                    <input type="checkbox" value="{{question.id}}" id="{{'quest'+i}}" (change)="onCheckboxChange(question.id,$event)">
+                    <label for="{{'quest'+i}}">{{question.qsData.question}}</label>
+                  </li>
+                  
+                </ul>
+                <button class="btn quizBtn">Submit</button>
+                <button type="button" class="btn quizCancel"  (click)="cancelQuiz()" routerLink="/admin/quiz">cancel</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+    </div> 
+
+    
+</div>
+
+<!-- Quiz Ends -->
+</section> <!-- Right Panel End Here -->
+
+               
+</div>
+</div>
+</main>
+<footer class="fot_main">
+<div class="container">
+<div class="fot_inner">
+<div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+</div>
+</div>
+</footer>

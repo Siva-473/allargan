@@ -1,0 +1,108 @@
+
+ 
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+
+                <!-- right section  start -->
+                <section class="right_panel">
+                       <!--------- Add Groups Start Here ---------->
+  <div class="addgroup hide_tab active" id="pop_2">
+    <!-- <div class="add_group_pop">
+       <div class="group_pop_content">
+            <div class="rph_header">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 rph_left">
+                        <h5>Add Asset</h5>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div> -->
+    <div class="right_panel_inner">
+          <div class="rph_header">
+              <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                      <h5>Assets</h5>
+                  </div>
+
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="rph_right">
+                          <button type="button" id="addAsset" class="btn-small bnt_blue" [routerLink]="['/admin/asset/add']" [queryParams]="{'assetId': '0'}">Add Asset</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="right_panel_box group_table">
+            <!-- <div class="wmd-view-topscroll">
+                <div class="scroll-div1">
+                </div>
+            </div> -->
+            <div class="table-responsive wmd-view">
+              <table class="table">
+                  <thead>
+                      <tr class="tableHead">
+                          <th>Title</th>
+                          <!-- <th>Sequence</th> -->
+                          <th>Asset Type</th>
+                          <th>Therapeutic Area</th>
+                          <th>Disease State</th>
+                          <th>Product</th>
+                          <th></th>
+                          <th>Action</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let asset of assets; index as i">
+                          <td>{{asset.title}}</td>
+                          <!-- <td>{{asset.sequence}}</td> -->
+                          <td>{{asset.assetType != null ? asset.assetType.userName:""}}</td>
+                          <td>{{asset.therapeuticArea != null ? asset.therapeuticArea.name:""}}</td>
+                          <td>{{asset.diseaseState != null ? asset.diseaseState.name:""}}</td>
+                          <td>{{asset.product != null ? asset.product.name :""}}</td>
+                          <td>
+                            <div class="custom-switch custom-switch-label-onoff d-flex">
+                                <input class="custom-switch-input" id="{{'btn_0'+i}}" [checked]="(asset.active==true) ? false: true"  (change) ="assetStatus($event,asset.id)" type="checkbox">
+                                <label class="custom-switch-btn" for="{{'btn_0'+i}}"></label>
+                            </div>
+                          </td>
+                          <td>
+                               <div class="info_btn"> <button type="button" class="query" [routerLink]="['/admin/edit/asset/'+asset.id]"><img src="assets/images/query_icon.png"></button></div>
+                          </td> 
+                           <td>
+                              <button type="button" class="delete" (click)="onDeleteAsset($event,asset.id)"><i class="far fa-trash-alt"></i></button>
+                          </td>
+                      </tr>
+                    </tbody>
+              </table>
+              </div>
+          </div>
+    </div>
+    
+ </div>  
+  <!---- Add Groups  End Here ---->
+
+
+                     
+                      
+
+
+                </section> <!-- Right Panel End Here -->
+            </div>
+        </div>
+    </main>
+    <footer class="fot_main">
+      <div class="container">
+        <div class="fot_inner">
+          <div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+        </div>
+      </div>
+    </footer>
+  

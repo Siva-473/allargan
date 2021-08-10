@@ -1,0 +1,566 @@
+/* Badges Wrapper */
+/* .box_right_notif .hover_showbox {
+    width: 860px;
+    max-width: 860px;
+} */
+
+/* Points and badges */
+
+.badge-title-wrap {
+    text-align: left;
+    padding: 0px 15px;
+}
+.badge-title-wrap > ul {
+    border-bottom: none !important;
+}
+.badge-title-wrap > img{
+    float: right;
+}
+.bagge-title {
+    color: #494848;
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.badgeList.active>a {
+    border: none !important;
+    background-color: transparent !important;
+    border-bottom: 4px solid #3e87cb !important;
+    color: #8a8989 !important;
+}
+.nav-tabs>li>a:hover {
+    border-color: transparent;
+}
+
+.bagge-title:hover {
+    /* color: #ff2c74 !important; */
+    background-color: transparent !important;
+}
+
+.totle_point_inner {
+    background-color: #a4d233;
+    padding: 15px;
+    text-align: left;
+    border-radius: 15px;
+    position: relative;
+    background-image: url('/assets/images/points_bg.png');
+    background-repeat: no-repeat;
+    background-position: right 40px center;
+    max-height: 165px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.totle_point_inner > h4 {
+    font-size: 18px;
+    color: #fff;
+}
+.points-view {
+    display: inline-block;
+    padding: 15px 30px 15px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Points Progress */
+.profile_progress > div { height: inherit;}
+
+.profile_section { text-align: left; }
+.profileProgress {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+}
+.profileProgressFill {
+  display: inline-block !important;
+  position: relative !important;
+  text-align: center;
+  color: #93a2ac;
+  font-family: Lato !important;
+  font-weight: 100;
+  padding: 0px !important;
+}
+.profileProgress svg {
+  width: 8rem;
+  height: 8rem;
+}
+.profileProgress svg:nth-child(2) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate(-90deg);
+}
+.profileProgress svg:nth-child(2) path {
+  fill: none;
+  stroke-width: 12;
+  stroke-dasharray: 629;
+  stroke: #83a829;
+  opacity: 0.9;
+  animation: load 10s;
+}
+.avatarWrap {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 35px;
+}
+.avatar {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: inherit;
+    height: inherit;
+}
+/* points Progress end */
+
+.total-points {
+    display: inline-block;
+    text-align: center;
+    padding: 15px 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.points-count > span:nth-child(1) {
+    font-size: 36px;
+    color: #fff;
+}
+.points-count > span:nth-child(2) {
+    font-size: 14px;
+    color: #fff;
+}
+
+
+.points-level {
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 200px;
+}
+.points-level > span {
+    color: #3c5500;
+}
+
+
+.my-badge-inner {
+    background-color: #3e87cb;
+    padding: 15px;
+    text-align: left;
+    border-radius: 15px;
+    position: relative;
+    background-image: url(/assets/images/points_bg.png);
+    background-repeat: no-repeat;
+    background-position: right 40px center;
+    max-height: 165px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.my-badge-inner > h4 {
+    font-size: 18px;
+    color: #fff;
+}
+.badges-list {
+    justify-content: space-evenly;
+    display: flex;
+    padding-top: 25px;
+}
+.badges-list > li {
+    display: inline-block;
+    text-align: center;
+}
+.badges-list > li > span {
+    display: block;
+}
+.tropgyTxt {
+    color: #fff;
+}
+.tropgyTxtActive {
+    color: #ffcd35 !important;
+}
+
+/* Level up */
+.level-status-wrap {
+    margin-top: 15px;
+}
+.level-status-inner {
+    background-color: #fff;
+    padding: 15px 15px 40px;
+    text-align: left;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.level-status-inner > h4 {
+    font-size: 18px;
+    color: #484848;
+}
+.level-status-progress-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-top: 15px;
+}
+.level-status-progress-list > li {
+    display: inline-block;
+    text-align: center;
+}
+
+
+.level-start-point {
+    display: block;
+    color: #ffa800;
+    font-size: 16px;
+}
+.level-trophy-title {
+    display: block;
+    color: #000;
+    font-size: 14px;
+}
+
+/* Level progress */
+/* .dot {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ebf0f4;
+    margin-top: 10px;
+}
+.dot::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #fff;
+}
+.dot::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 145px;
+    height: 4px;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    background-color: #ebf0f4;
+}
+.level-status-progress-list > li:last-child .dot::after {
+    content: none;
+}
+.dot-progress {
+    background-color: #ffa800;
+}
+.dot-progress::after {
+    background-color: #ffa800;
+}
+.dot-complete {
+    background-color: #82b013;
+}
+.dot-complete::after {
+    background-color: #82b013;
+} */
+/* level progress */
+
+/* level progress test */
+.progressLineWrap {
+    position: relative;
+    width: 82%;
+    height: 4px;
+    /* margin-top: 40px; */
+    margin: 40px auto;
+}
+.progressLinedefault {
+    position: relative;
+    background-color: #ebf0f4;
+    width: 100%;
+    height: inherit;
+}
+.progressLine {
+    position: absolute;
+    background-color: #82b013;
+    width: 28%;
+    height: inherit;
+}
+.progressLine::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+}
+.progressLine::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    border-radius: 50%;
+    background-color: #a4d233;
+}
+.currentPoint {
+    text-align: right;
+    margin: 15px 0px 0px;
+    font-size: 18px;
+    color: #7eac0f;
+}
+.progressBreak {
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: inherit;
+}
+.dots {
+    position: absolute;
+    width: 25%;
+    height: inherit;
+    background: #ebf0f4;
+}
+.dots:nth-child(2) {
+    left: 25%;
+}
+.dots:nth-child(3) {
+    left: 50%;
+}
+.dots:nth-child(4) {
+    left: 75%;
+}
+.dots:nth-child(5) {
+    left: 100%;
+}
+.dots {
+    position: absolute;
+    width: 25%;
+    height: inherit;
+    background: transparent;
+}
+.dots::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ebf0f4;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    z-index: 1;
+}
+.dots::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+    z-index: 2;
+}
+.dotsProgress {
+    background: #ffa800;
+}
+.dotsProgress::before {
+    background: #ffa800;
+}
+.dotsComplete {
+    background: #82b013;
+}
+.dotsComplete::before {
+    background: #82b013;
+}
+
+
+
+
+
+
+
+
+/* LeaderBoard */
+.leaderboard-first-topper {
+    background-color: #a4d233;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 15px 30px 30px 30px;
+    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-image: url(/assets/images/leaderboard-bg.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.leaderboard-first-topper > h2 {
+    text-align: left;
+}
+.first-topper-panel {
+    padding: 20px 15px;
+}
+.first-topper-img {
+    display: inline-block;
+    margin-right: 15px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+.first-topper-img > img {
+    vertical-align: bottom;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+}
+.first-topper > .topper > span {
+    display: block;
+}
+.first-topper > .topper > .topperName {
+    font-size: 20px;
+    color: #fff;
+}
+.first-topper > .topper > .topperDesignation {
+    font-size: 12px;
+    color: #3e4444;
+}
+.first-topper > .topperPoint {
+    background: #fff;
+    border-radius: 200px;
+    padding: 3px 10px;
+    font-size: 20px;
+}
+.first-topper > .topperPoint > span {
+    color: #7d8b89;
+    font-size: 16px;
+}
+.leaderboard-topper-list-wrap {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 15px;
+    /* border-top-left-radius: 0px;
+    border-top-right-radius: 0px; */
+    
+}
+.leaderboard-topper-list {
+    text-align: left;
+    max-height: 445px;
+    overflow: auto;
+    padding: 15px 30px;
+}
+.leaderboard-topper-list::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.leaderboard-topper-list::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #F5F5F5;
+}
+
+.leaderboard-topper-list::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+.leaderboard-second-toppers {
+    border-radius: 15px;
+}
+.first-topper {
+    display: inline-block;
+}
+.topper {
+    margin-bottom: 15px;
+    text-align: left;
+    margin-left: 10px;
+}
+.leaderboard-topper-list > li  {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px;
+}
+.topper-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.leaderboard-topper-list > li > .topper-img > img  {
+    vertical-align: baseline;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+}
+.leaderboard-topper-list > li > .topper  {
+    display: inline-block;
+}
+.leaderboard-topper-list > li > .topper > span {
+    display: block;
+}
+
+.leaderboard-topper-list > li > .topperPoint  {
+    display: inline-block;
+    float: right;
+    padding: 12px 0px;
+}
+.leaderboard-topper-list > li > .topperPoint > span  {
+    color: #c5cac9;
+    font-size: 12px;
+}
+
+.leaderboard-first-topper .leaderboardTitle {
+    color: #fff;
+    font-size: 18px;
+}
+.leaderboard-first-topper .leaderboardTitle > span {
+    color: #3c5500;
+    font-size: 18px;
+}
+.second-toppers-title {
+    padding: 10px 0px;
+}
+.second-toppers-title > h2 {
+    font-size: 18px;
+    color: #494848;
+    text-align: left;
+    padding: 10px 30px;
+}
+.second-toppers-title > h2 > span {
+    font-size: 18px;
+    color: #3e87cb;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6)
+}

@@ -1,0 +1,156 @@
+
+ 
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+
+                <!-- right section  start -->
+                <section class="right_panel">
+                       <!--------- Add Groups Start Here ---------->
+  <div class="addgroup hide_tab active" id="pop_2">
+    <div class="add_group_pop" *ngIf="addGroup_show">
+       <div class="group_pop_content">
+            <div class="rph_header">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 rph_left">
+                        <h5>Add Group</h5>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- <form  name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate> -->
+                <form class="user_fileds" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              
+                        <div class="form-group row">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                            <label for="groupname">Group Name</label>
+                          </div>
+                           
+                          <div class="col-sm-6 col-md-10 col-lg-10">
+                            <input type="text" class="form-control " name="name" placeholder="" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required minlength="3" maxlength="30">
+                            <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                                <div *ngIf="name.errors.required">Group Name is required</div>
+                            </div>
+                                <div *ngIf="name.errors?.minlength" class="invalid-feedback">
+                                    Group Name must be at least 3 characters long.
+                                </div> 
+                                <div *ngIf="name.errors?.maxlength" class="invalid-feedback"> 
+                                    Group Name can be max 30 characters long.
+                                </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                            <label for="mail">Description</label>
+                          </div>
+                          <div class="col-sm-6 col-md-10 col-lg-10">
+                            <input type="text" class="form-control " name="description" placeholder="" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required minlength="3" maxlength="50">
+                            <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+                                <div *ngIf="description.errors.required">Description is required</div>
+                            </div>
+                            <div *ngIf="description.errors?.minlength" class="invalid-feedback">
+                                    Description must be at least 3 characters long.
+                            </div> 
+                            <div *ngIf="description.errors?.maxlength" class="invalid-feedback"> 
+                                    Description can be max 50 characters long.
+                            </div>
+                          </div>
+                        </div>
+                        <input type="hidden" class="form-control " name="id" placeholder="" [(ngModel)]="model.id" #id="ngModel" >
+                        <div class="buttons form-group">
+                                <span class=" btn-small canadd" (click)="cancelGroup()">Cancel</span>
+                                <button class=" btn-small bnt_blue"  *ngIf="submitBtn">Submit</button>
+                                <button class=" btn-small bnt_blue"  *ngIf="updateBTn">Update</button>
+                              </div>
+            </form>
+       </div>
+    </div>
+    <div class="right_panel_inner">
+          <div class="rph_header">
+              <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                      <h5>Groups</h5>
+                  </div>
+
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="rph_right">
+                          <form class="serach_form d-flex">
+                           
+                              <button type="button" class="search_btn"><i class="fas fa-search"></i>
+                                 <div class="serach_box"><input type="text" placeholder="Search.."></div>
+                              </button>
+         
+                          </form>
+                           <button type="button" id="addgroups" class="btn-small bnt_blue" (click)="onAddGroupClick()">Add Group</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="right_panel_box group_table">
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr class="tableHead">
+                          <th>Group Name</th>
+                          <th>Description</th>
+                          <th class="text-center">Asset Mapped</th>
+                          <th class="text-center">User Mapped</th>
+                          <th></th>
+                          <th>Action</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let group of groups ; index as i">
+                         <!--[routerLink]="['/admin/group/map']"--> 
+                          <td><a  class="pointer" (click)="shareGrpDetails(group.id, group.name)">{{group.name}}</a></td>
+                          <td>{{group.description}}</td>
+                          <td class="cen_blue">Asset ({{group.assetCount}})</td>
+                          <td class="cen_blue">Users ({{group.userCount}})</td>
+                          <td>
+                              <div class="custom-switch custom-switch-label-onoff pl-0">
+                                  <input class="custom-switch-input" id="{{'btn_0'+i}}" type="checkbox" (click)="changeStatus($event,group.id)" [checked]="(group.status== 'true') ? false: true" >
+                                  <label class="custom-switch-btn" for="{{'btn_0'+i}}"></label>
+                              </div>
+                          </td>
+                          <td>
+                              <div class="info_btn"><button type="button" class="query" (click)="onEditGroupClick($event,group.id)"><img src="assets/images/query_icon.png"></button></div>
+                          </td>
+                          <td>
+                              <button type="button" class="delete" (click)="onDeleteGroupClick($event,group.id)"><i class="far fa-trash-alt"></i></button>
+                          </td>
+
+                      </tr>
+                    </tbody>
+              </table>
+              </div>
+          </div>
+    </div>
+    
+ </div>  
+  <!---- Add Groups  End Here ---->
+
+
+                     
+                      
+
+
+                </section> <!-- Right Panel End Here -->
+            </div>
+        </div>
+    </main>
+    <footer class="fot_main">
+      <div class="container">
+        <div class="fot_inner">
+          <div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+        </div>
+      </div>
+    </footer>
+  

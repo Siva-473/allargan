@@ -1,0 +1,332 @@
+<div class="row hover_showbox badgeBoard">
+    <div class="badge-title-wrap">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item badgeList" (click)="badgeShow()" [ngClass]="{'active': myBadges}">
+                    <a class="nav-link bagge-title active" id="badge-tab" data-toggle="tab"  role="tab" aria-controls="badge" aria-selected="true">My Points & Badges</a>
+                </li>
+                <li class="nav-item badgeList"  (click)="leadersShow()" [ngClass]="{'active': leaderShow}">
+                    <a class="nav-link bagge-title" id="leaderboard-tab" data-toggle="tab"  role="tab" aria-controls="leaderboard" aria-selected="false">Leaderboards</a>
+                </li>
+            </ul>
+        <!-- <h2 class="bagge-title">My Points & Badges</h2>
+        <img src="/assets/images/close.png" alt="close"> -->
+    </div>
+    
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane  fade"  [ngClass]="{'active': myBadges,'show':myBadges}" id="badge" role="tabpanel" aria-labelledby="badge-tab">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 totle-point">
+                <div class="totle_point_inner">
+                    <h4>Total Points</h4>
+                    <div class="points-view">
+                        <div class="profile_section">
+                            <!--  Container  -->
+                            <ul class="profileProgress">
+                                <!--  Item  -->
+
+                                <li class="profileProgressFill" data-name="SVG Skill"
+                                    data-percent="13%">
+                                    <svg viewBox="-10 -10 220 220">
+                                        <g fill="none" stroke-width="10"
+                                            transform="translate(100,100)">
+                                            <path d="M 0,-100 A 100,100 0 0,1 86.6,-50"
+                                                stroke="url(#cl1)" />
+                                            <path d="M 86.6,-50 A 100,100 0 0,1 86.6,50"
+                                                stroke="url(#cl2)" />
+                                            <path d="M 86.6,50 A 100,100 0 0,1 0,100"
+                                                stroke="url(#cl3)" />
+                                            <path d="M 0,100 A 100,100 0 0,1 -86.6,50"
+                                                stroke="url(#cl4)" />
+                                            <path
+                                                d="M -86.6,50 A 100,100 0 0,1 -86.6,-50"
+                                                stroke="url(#cl5)" />
+                                            <path d="M -86.6,-50 A 100,100 0 0,1 0,-100"
+                                                stroke="url(#cl6)" />
+                                        </g>
+                                    </svg>
+                                    <svg viewBox="-10 -10 220 220" class="stroke">
+                                        <path
+                                            d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z"
+                                            [style.strokeDashoffset]="percentage"></path>
+                                    </svg>
+                                    <a class="avatarWrap"
+                                        href='@Url.Action("GetCurrentUserProfile", "UserProfile")?layout=home'>
+                                        <img src="/assets/images/reward.png" alt="avatar"
+                                            class="avatar">
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <!--  Defining Angle Gradient Colors  -->
+                            <svg width="0" height="0">
+                                <defs>
+                                    <linearGradient id="cl1"
+                                        gradientUnits="objectBoundingBox" x1="0" y1="0"
+                                        x2="1" y2="1">
+                                        <stop stop-color="#fff" />
+                                        <stop offset="100%" stop-color="#fff" />
+                                    </linearGradient>
+                                    <linearGradient id="cl2"
+                                        gradientUnits="objectBoundingBox" x1="0" y1="0"
+                                        x2="0" y2="1">
+                                        <stop stop-color="#fff" />
+                                        <stop offset="100%" stop-color="#fff" />
+                                    </linearGradient>
+                                    <linearGradient id="cl3"
+                                        gradientUnits="objectBoundingBox" x1="1" y1="0"
+                                        x2="0" y2="1">
+                                        <stop stop-color="#fff" />
+                                        <stop offset="100%" stop-color="#fff" />
+                                    </linearGradient>
+                                    <linearGradient id="cl4"
+                                        gradientUnits="objectBoundingBox" x1="1" y1="1"
+                                        x2="0" y2="0">
+                                        <stop stop-color="#fff" />
+                                        <stop offset="100%" stop-color="#fff" />
+                                    </linearGradient>
+                                    <linearGradient id="cl5"
+                                        gradientUnits="objectBoundingBox" x1="0" y1="1"
+                                        x2="0" y2="0">
+                                        <stop stop-color="#fff " />
+                                        <stop offset="100%" stop-color="#fff " />
+                                    </linearGradient>
+                                    <linearGradient id="cl6"
+                                        gradientUnits="objectBoundingBox" x1="0" y1="1"
+                                        x2="1" y2="0">
+                                        <stop stop-color="#fff" />
+                                        <stop offset="100%" stop-color="#fff" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="total-points">
+                        <div class="points-count">
+                            <span>{{points}}</span>
+                            <span>pts</span>
+                        </div>
+                        <div class="points-level">
+                            <span *ngIf="points<=25000">+</span>
+                            <span *ngIf="points<=25000">{{25000-points}}</span>
+                            <span *ngIf="points>25000">congratulations your level is completed</span>
+                            <span>to level up</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 my-badge">
+                <div class="my-badge-inner">
+                    <h4>My Badges</h4>
+                    <div class="badges-list-wrap">
+                        <ul class="badges-list">
+                            <li>
+                                <img *ngIf="points<='2500'" src="/assets/images/badge_btrophy_active.png" alt="trophy">
+                                <img *ngIf="points>'2500'" src="/assets/images/badge_trophy_locked.png" alt="trophy">
+                                <span class="tropgyTxt" [ngClass]="{'tropgyTxtActive': points<=2500}">Bronze</span>
+                            </li>
+                            <li>
+                                <img *ngIf="points>='2500' && points <='5000' " src="/assets/images/badge_strophy_active.png" alt="trophy">
+                                <img *ngIf="points >'5000' || points<'2500' " src="/assets/images/badge_trophy_locked.png" alt="trophy">
+                                <span class="tropgyTxt"  [ngClass]="{'tropgyTxtActive': points>='2500' && points <='5000' }">Silver</span>
+                            </li>
+                            <li>
+                                <img  *ngIf="points>'5000' && points <='10000'" src="/assets/images/badge_gtrophy_active.png" alt="trophy"> 
+                                <img *ngIf="points<'2500' || points =='5000' || points >'10000'" src="/assets/images/badge_trophy_locked.png" alt="trophy">
+                                <span class="tropgyTxt"  [ngClass]="{'tropgyTxtActive': points>'5000' && points <='10000'}">Gold</span>
+                            </li>
+                            <li>
+                                    <img *ngIf="points>'10000'" src="/assets/images/badge_ptrophy_active.png" alt="trophy">
+                                <img *ngIf="points<='10000'" src="/assets/images/badge_trophy_locked.png" alt="trophy">
+                                <span class="tropgyTxt"  [ngClass]="{'tropgyTxtActive': points>'10000'}">Platinum</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 level-status-wrap">
+                <div class="level-status-inner">
+                    <h4>Level Status</h4>
+                    <div class="levelStatusWrap">
+                        <div class="level-status">
+                            <ul class="level-status-progress-list">
+                                <li>
+                                    <span class="level-start">Let’s start with</span>
+                                    <span class="level-start-point">2500pts</span>
+                                    <div class="level-points">
+                                        <span class="level-point">{{points}}</span>
+                                        <span class="level-point-txt">pts</span>
+                                    </div>
+                                    <span class="dot dot-progress"></span>
+                                </li>
+                                <li>
+                                    <span class="level-trophy-title">Bronze</span>
+                                    <img *ngIf="points<='2500'" src="/assets/images/level_btrophy_active.png"
+                                        alt="trophy">
+                                        <img  *ngIf="points>'2500'" src="/assets/images/level_btrophy_locked.png"
+                                        alt="trophy">
+                                    <div class="level-points">
+                                        <span class="level-point">2500</span>
+                                        <span class="level-point-txt">pts</span>
+                                    </div>
+                                    <span class="dot dot-complete"></span>
+                                </li>
+                                <li>
+                                    <span class="level-trophy-title">Silver</span>
+                                    <img *ngIf="points>='2500' && points <='5000'" src="/assets/images/level_strophy_active.png"
+                                    alt="trophy">
+                                    <img  *ngIf="points >'5000' || points<'2500' " src="/assets/images/level_btrophy_locked.png"
+                                    alt="trophy">
+                                    <div class="level-points">
+                                        <span class="level-point">5000</span>
+                                        <span class="level-point-txt">pts</span>
+                                    </div>
+                                    <span class="dot"></span>
+                                </li>
+                                <li>
+                                    <span class="level-trophy-title">Gold</span>
+                                    <img *ngIf="points>'5000' && points <='10000'" src="/assets/images/level_gtrophy_active.png"
+                                    alt="trophy">
+                                    <img *ngIf="points<'2500' || points =='5000' || points >'10000' " src="/assets/images/level_btrophy_locked.png"
+                                    alt="trophy">
+                                    <div class="level-points">
+                                        <span class="level-point">10000</span>
+                                        <span class="level-point-txt">pts</span>
+                                    </div>
+                                    <span class="dot"></span>
+                                </li>
+                                <li>
+                                    <span class="level-trophy-title">Platinum</span>
+                                    <img *ngIf="points>'10000'" src="/assets/images/level_ptrophy_active.png"
+                                    alt="trophy">
+                                    <img  *ngIf="points<='10000'" src="/assets/images/level_btrophy_locked.png"
+                                    alt="trophy">
+                                    <div class="level-points">
+                                        <span class="level-point">25000</span>
+                                        <span class="level-point-txt">pts</span>
+                                    </div>
+                                    <span class="dot"></span>
+                                </li>
+                            </ul>
+                            <div class="progressLineWrap">
+                                <div class="progressLinedefault">
+
+                                    <div class="progressLine" [style.width.%]="prograsessBar">
+                                        <div class="currentPoint">
+                                            <span class="currPointNum">{{points}}</span>
+                                            <span class="currPointTxt">pts</span>
+                                        </div>
+                                    </div>
+                                    <div class="progressBreak">
+                                            <!-- //dotsProgress dotsComplete -->
+                                        <div class="dots"></div>
+                                        <div class="dots"></div>
+                                        <div class="dots"></div>
+                                        <div class="dots"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade"  [ngClass]="{'active': leaderShow,'show':leaderShow}" id="leaderboard" role="tabpanel" aria-labelledby="leaderboard-tab">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 leaderboard-topper">
+                <div class="leaderboard-topper-list-wrap">
+                    <div class="leaderboard-first-topper">
+                        <h2 class="leaderboardTitle">Lorem Group <span>(Top 05)</span></h2>
+                        <div class="first-topper-panel">
+                            <div class="first-topper-img">
+                                <img src="/assets/images/topperPlaceholder.png" alt="topper-img">
+                            </div>
+                            <div class="first-topper">
+                                    <div class="topper">
+                                        <span class="topperName">{{currentUserTop.name}}</span>
+                                        <span class="topperDesignation">{{currentUserTop.groups && currentUserTop.groups[0].name}}</span>
+                                    </div>
+                                    <div class="topperPoint">
+                                        {{currentUserTop.points}}
+                                        <span>Pts</span>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="leaderboard-topper-list">
+                        <li *ngFor="let topGroup of overAllGroupTop">
+                            <span class="topper-img">
+                                <img src="/assets/images/topperPlaceholder.png" alt="topper-img">
+                            </span>
+                            <div class="topper">
+                                <span class="topperName">{{topGroup.name}}</span>
+                                <span class="topperDesignation">{{topGroup.groups && topGroup.groups[0].name}}</span>
+                            </div>
+                            <div class="topperPoint">
+                                {{topGroup.points}}
+                                <span>Pts</span>
+                            </div>
+                        </li>
+
+                        
+                        <div class="row" *ngIf="showLoderGroup">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="loding_bx">
+                                    <div class="load-cir">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <h4>Loading...</h4>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 leaderboard-topper">
+                <div class="leaderboard-topper-list-wrap">
+                    <div class="second-toppers-title">
+                        <h2>Overall <span>(Top 10)</span></h2>
+                    </div>
+                    <ul class="leaderboard-topper-list leaderboard-second-toppers">
+                        <li *ngFor="let topPeople of overAllTop">
+                            <span class="topper-img">
+                                <img src="/assets/images/topperPlaceholder.png" alt="topper-img">
+                            </span>
+                            <div class="topper">
+                                <span class="topperName">{{topPeople.name}}</span>
+                                <span class="topperDesignation">{{ topPeople.groups && topPeople.groups[0]?.name}}</span>
+                            </div>
+                            <div class="topperPoint">
+                                {{topPeople.points}}
+                                <span>Pts</span>
+                            </div>
+                        </li>
+
+                        <div class="row" *ngIf="showLoder">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="loding_bx">
+                                    <div class="load-cir">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <h4>Loading...</h4>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

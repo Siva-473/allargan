@@ -1,0 +1,4 @@
+.left_panel.left_panel_list .nav_list > li > a.router-link-active {
+    color: #555;
+    background-color:red;
+  }

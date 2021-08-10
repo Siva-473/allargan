@@ -1,0 +1,62 @@
+    <div class="quiz_container container">
+        <div class="quiz_wrap row">
+            <header class="quiz_header col-xs col-sm-12 col-md-12 col-lg-12">
+                <img src="assets/images/logo2.png" alt="Logo">
+            </header>
+            <section class="quiz_title_wrap col-xs col-sm-6 col-md-5 col-lg-4" *ngIf="quiz_title_wrap">
+                <h2>{{quizName}}</h2>
+                 <button class="btn btnStart" (click)="openQuestionPop()" *ngIf="btnStart">Let's Start</button>
+    &nbsp;&nbsp;        <button class="btn btnStart"  (click)="goBack(url)">Cancel</button>
+            </section>
+            <section class="quiz_shell_wrap col-xs col-sm-12 col-md-12 col-lg-12" *ngIf="quiz_shell_wrap">
+                <h2>Question</h2>
+                <div class="quiz_shell">
+                    <div class="quiz_shell_scroll">
+                        <div class="quest row">
+                            <span class="quest_index col-md-1 col-lg-1"><img src="assets/images/quest.png" alt="quest"></span>
+                            <div class="colse_btn"><button (click)="goBack(url)"></button></div> 
+                            <h2 class="quest_txt col-md-11 col-lg-11">{{question}}</h2>
+                        </div>
+                        <div class="quest_Bool">
+                            <form action="#">
+                                <div class="quest_Bool_list"  *ngFor="let answer of answers">                               
+                                  <input id="test{{answer.id}}" *ngIf="questionType=='SINGLE_CHOICE'" [value]="answer.id" type="radio" name="radio-group"  [(ngModel)]="radioSelected" (change)="onToggle(answer.id,$event)"  [disabled]="isDisabled">
+                                  <input id="test{{answer.id}}"  *ngIf="questionType=='MULTIPLE_CHOICE'" [value]="answer.id" type="checkbox" name="check-group"   [(ngModel)]="answer.checked" (change)="onToggle(answer.id,$event)" [disabled]="isDisabled">
+                                  <label for="test{{answer.id}}">{{answer.text}}</label>
+                                </div>
+                              </form>
+                        </div>
+                        <div class="qust_submit" *ngIf="qust_submit">
+                            <button class="btn btn_submit" (click)='onSubmit()'>Submit</button>
+                        </div>
+                    </div>
+                    <div class="quest_alert {{quest_alert}}" *ngIf="quest_alert_visible">
+                        <!-- For Correct Answer -->
+                        <!-- <span class="answ_status"><img src="src/images/correct.png" alt=""> Correct Answer</span> -->
+                        <span class="answ_status"><img src="assets/images/{{quest_alert_image}}.png" alt="">{{quest_alert_text}}</span>
+                        <button class="btn btn_continue" (click)='onContinue()'>Continue</button>
+                    </div>
+                </div>
+            </section>
+            <section class="result_wrap col-xs col-sm-6 col-md-5 col-lg-4" *ngIf="result_wrap">
+                <div class="result">
+                    <h2>Result:</h2>
+                    <p>Your Score</p>
+                    <span class="score">{{(score+scoreForAnswerdQuestions)}} Points ({{passPercentage | number:'1.0-0'}}%)</span>
+                    <div class="actual-result">
+                       <img src="assets/images/{{result_image}}.png" alt="result_icon">
+                        <span [ngClass]="{'pass':btnComplete,'fail':btnRetake}" >{{text_result}}</span>
+                       
+                    </div>
+                    <button class="btn"  [ngClass]="{'btnRetake':btnRetake}" *ngIf="btnRetake" (click)="clickRetake(journeyId)">                        
+                        <img src="assets/images/reload.png">Retake                     
+                    </button>                   
+                    <button class="btn" *ngIf="!btnRetake" [ngClass]="{'btnComplete':btnComplete}" (click)="markAsComplete(journeyId);$event.stopPropagation();">Mark Complete</button>
+                    <button class="btn btnCancel"  (click)="goBack(url)">Cancel</button>
+                </div>
+            </section>
+        </div>
+        <footer class="quiz_foot col-xs col-sm-12 col-md-12 col-lg-12">
+            <span>&copy; ALLERGAN 2019</span>
+        </footer>
+    </div>

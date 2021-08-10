@@ -1,0 +1,70 @@
+    <div class="min_contner silde_5">
+        <div class="hedpart">
+            <div class="boxed_wrapper">
+           <app-header-nav></app-header-nav>
+                <div class="col-md-12 col-sm-12">
+                    <div class="screenost">
+                        <h4 class="test_1">Your Training Plan has been created.</h4>
+                        <h5 class="test_2">Welcome to Basecamp!</h5>
+                    </div>
+                  </div>
+            </div>
+        </div>
+       
+        <section class="section_tab dragblslide_1 dragbaltab">
+            <div class="auto-container">
+                <div class="row">
+                    <div class="col-md-11 col-sm-12 menu_strecher_wrap">
+                            <div class="menu_strecher">
+                                    <div class="stap_1" *ngFor="let assetsTypes of assetsType"  [routerLink]="['/main']"  [queryParams]="{ userId:currentUser.id,assetsTypeId:assetsTypes.id,urls:assetsTypes.userName}" value="assetsTypes.id" skipLocationChange>
+                                    <span *ngIf="assetsTypes.userName!='Core Product Training'"></span>
+                                    <span  *ngIf="assetsTypes.userName=='Core Product Training'" class="active"></span>
+                                    <p>{{assetsTypes.userName}}</p> 
+                            
+                                        <div class=" hottopics">
+                                        <div class="hottips">
+                                            <p class="text_hip1">{{assetsTypes.userName}}</p>
+                                            <div class="text_hip2">
+                                                <p>Total <b>{{assetsTypes.total}}</b></p>
+                                                <p>Completed <b>{{assetsTypes.completed}}</b></p>
+                                                
+                                            </div>
+                                            <ul class="text_hip3">
+                                                <li><b>Started</b> Training {{assetsTypes.started}}</li>
+                                                <li><b>Not Started</b> Training {{assetsTypes.notStarted}}</li>
+                                            </ul>
+                                        </div>
+                                         
+                                    </div>
+                                </div>
+                                    <!-- <div class="stap_1">
+                                        <span class="disable"></span></div>
+                                     <div class="stap_1"><span class="disable"></span></div>  -->
+                                    
+                                      <div class="compliance"><span></span><p>Compliance <br>Wire</p></div>
+                                     <!-- <div class="stap_1"><span class="disable"></span></div>
+                                    <div class="stap_1"><span class="disable"></span></div> -->
+    
+    
+                                    
+                                </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="auto-container">
+                <div class="row ">
+                    <div class="col-md-12 ">
+                        <p class="footer1 ">© ALLERGAN 2019</p>
+                    </div>
+                </div>
+            </div>
+        </footer>       
+    </div>
+
+    

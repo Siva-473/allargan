@@ -1,0 +1,113 @@
+<section class="mainmenu-area">
+  <div class="auto-container">
+      <div class="row">
+          <div class="right_icon">
+              <div class="box_right_notif">
+                  <div class="secral_point notify">
+                     <i class="fa_icon ball" title="Notification"  (click)="this.isnotificaionbodshow=!this.isnotificaionbodshow" (clickOutside)="this.isnotificaionbodshow=false" style="cursor:pointer"></i>
+                     <span class="num">{{notificationSize}}</span> 
+                      <div class="hover_showbox" [ngClass]="{'hover_showbox_active': isnotificaionbodshow}"   *ngIf="notifications && notifications.length > 0">
+                            <!-- hover_showbox_active -->
+                          <ul>
+                              <li *ngFor="let notification of notifications" class="icon">
+                                  {{notification.message}}<span (click)="markAsSeen(notification.id)"></span>
+                              </li>
+                             
+                              <li class="icon" *ngIf="notifications.length >1">
+                                  <b class="text_last"(click)="markAllAsSeen()">Dismiss All</b>
+                              </li>
+                          </ul>
+                      </div>
+                      <div [ngClass]="{'overlay': isnotificaionbodshow}"  (click)="this.isnotificaionbodshow=!this.isnotificaionbodshow" *ngIf="notifications && notifications.length > 0"></div>
+                  </div>
+              </div>
+              <div class="box_right_notif">
+                  <div class="secral_point help_2">
+                      <i class="fa_icon help" title="Help"></i>
+                  </div>
+              </div>
+              <div class="box_right_notif">
+                  <div  class="secral_point badgesa">
+                      <i (click)="badgeShow=!badgeShow" class="fa_icon batch" title="Badges"></i>
+                      
+                      <points-badges  *ngIf="badgeShow"></points-badges>
+                      <!-- <div class="hover_showbox badgesa">
+                          <div class="totle_point">
+                              <p>Total Points</p>
+                              <span>165</span>
+                          </div>
+                          <div class="my_batch">
+                              <p>My Badges</p>
+                              <div class="padgess">
+                                  <span><img src="assets/images/badges_1.png" alt=""></span>
+                                  <span><img src="assets/images/badges_2.png" alt=""></span>
+                              </div>
+                          </div>
+                      </div> -->
+                  </div>
+              </div>
+              <div *ngIf="rolePresent" class="box_right_notif admin-switch">
+                <div class="secral_point">
+                    <i class="fa_icon quiz" title="Admin" routerLink="/admin" style="cursor:pointer"></i>
+                </div>
+            </div>
+              <!-- <div class="box_right_notif">
+                  <div class="secral_point last">
+                      <i class="fa_icon last"></i>
+                  </div>
+              </div> -->
+          </div>
+          <div class="col-md-12 col-sm-12">
+            
+
+            <div class="main-logo hidden-xs">
+                <a [routerLink]="['/']"><img src="assets/images/logo2.png" alt=""></a>
+            </div>
+            <div class="menu_tab">
+                <button type="button" id="menu_btn" class="navbar"  [ngClass]="{'active': navClick}"  (click)="navBarActive()" (clickOutside)="onClickedOutside()" data-toggle="collapse"></button>
+                <div class="collapse mobile_menu" [ngClass]="{'active': navClick}">
+                    <ul class="nav navbar-nav">
+                        <!-- <li class="active"><a href="#" class="">My Profile</a></li> -->
+                    <li *ngFor="let assetsTypes of assetsType"  [routerLink]="['/main']"  [queryParams]="{ userId:currentUser.id,assetsTypeId:assetsTypes.id,urls:assetsTypes.userName}" value="assetsTypes.id" skipLocationChange>
+                            <div class="mymenu">{{assetsTypes.userName}}</div>
+                    </li>
+                    <!-- <li routerLink="/admin"> <div class="mymenu">Switch to Admin</div></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="mycontainer menu_tab back_btn" [routerLink]="['/']">
+                <a class="mybtn2 btn btn-link btn-xs">
+                    <i class="fas fa-arrow-left" style="font-size: 24px;font-weight: 600;margin-left: 10px;"></i>
+                </a>
+            </div>
+           
+            <div class="breadCrumbWrap">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadList">
+                            <li *ngFor = "let rootListElement of rootList">
+                                <a *ngIf = " bascampMessage && rootListElement.id == 1"  [routerLink]="['/basecamp']">Basecamp </a>
+                                <a *ngIf = " !bascampMessage && rootListElement.id == 1"  >Basecamp </a>
+                                <a *ngIf = "rootListElement.id == 2"  [routerLink]="[rootListElement.routerLink]" [queryParams]="{userId: rootListElement.userId , assetsTypeId :rootListElement.assetsTypeId,urls:rootListElement.urlLink }" skipLocationChange>{{rootListElement.title}}</a>
+                                <a *ngIf = "rootListElement.id == 3" skipLocationChange>{{rootListElement.title}}</a>
+                                <a *ngIf = "rootListElement.id == 4" skipLocationChange>{{rootListElement.title}}</a>
+                            </li>
+                        </ol>
+                    </nav>
+            </div>
+              <!-- <div class="searchic" [ngClass]="{'active':searchActive }">
+                  <input type="text" class="search_test"  [ngClass]="{'active':searchActive }" name="">
+                  <button type="button" class="search_ic" (click)="toggleCollapse()"></button>
+              </div> -->
+
+            <div class="user_name">
+                <div class="username">Hi, {{currentUser.name}} <span> {{group?.name}}</span></div>
+            </div> 
+          </div>
+          <!-- <div class="col-md-4 col-sm-5">
+              <div class="user_name">
+                  <div class="username">Hi, {{currentUser.name}} <span> {{currentUser.roleName}}</span></div>
+              </div>
+          </div> -->
+      </div>
+  </div>
+</section>

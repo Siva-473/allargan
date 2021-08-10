@@ -1,0 +1,214 @@
+
+ 
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+
+                <!-- right section  start -->
+                <section class="right_panel">
+                       <!--------- Add Groups Start Here ---------->
+<div class="addgroup hide_tab active" id="pop_2">
+    
+    
+    <div class="right_panel_inner">
+          <div class="rph_header">
+              <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6 rph_left user_buts">
+                    <form class="assets_tabs">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input asset_nav" id="customRadio" name="buttn" value="1" data-attr="inputtab_1" checked (click)="assetNavClick($event)">
+                        <label class="custom-control-label asset_nav" for="customRadio">Users</label>
+                      </div>
+
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input asset_nav" id="customRadio2" name="buttn" value="2" data-attr="inputtab_2" (click)="assetNavClick($event)">
+                        <label class="custom-control-label" for="customRadio2">Assets</label>
+                      </div>
+                    </form> 
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6" >
+                      <div class="rph_right">
+                          <form class="serach_form d-flex">
+                            <div class="serach_box"><input type="text" placeholder="Search.."></div>
+                              <button type="button" class="search_btn"><i class="fas fa-search"></i></button>
+                              
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="right_panel_box group_table">
+                <!-----Groups Users Panesl Start Here --->
+            <div class="groups_users asset_tab " [ngClass]="{'active': userNav_show}"  id="inputtab_1" >
+              <form class="user_fileds ">
+                 <div class="filter_section">
+                      
+                        <select class="custom-select slects_option mt-4 mb-3" (change)="shareGrpDetails($event.target.value)" >
+                          <option *ngFor="let group of groups ; index as i" [selected]="grpName === group.name" [value]="group.id">{{group.name}}</option>                          
+                        </select>                                          
+                 </div>
+                 <div class="wmd-view-topscroll">
+                  <div class="scroll-div1">
+                  </div>
+                </div>
+                 <div class="table-responsive wmd-view">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Email ID</th>
+                                <th>Roles</th>
+                                <th>Therapeutic Area</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <ng-container  > -->
+                            <tr *ngFor="let user of userResultList ; index as i">
+                                  <td>{{user.firstName}}</td>
+                                  <td>{{user.emailID}}</td>
+                                  <td>{{user.roleName != null ? user.roleName: ""}}</td>
+                                  <td><div *ngFor="let ta of user.therapeuticArea;">{{ta.name+","}}</div></td>
+                                  <td class="text-center checkbox_square">
+                                      <div class="custom-control custom-checkbox ">
+                                        <input type="checkbox" class="custom-control-input" id="{{'customCheck'+i}}" value="{{user.id}}" 
+                                        [name]="user.firstName" (change)="addToUserList(user.id,$event)" [checked]="userIDList.indexOf(user.id) > -1 ? true: false">
+                                        <label class="custom-control-label" for="{{'customCheck'+i}}"></label>
+                                      </div>
+                                  </td>
+                            </tr>                            
+                          <!-- </ng-container>   -->                            
+                        </tbody>
+                    </table>
+                 </div>
+                 <div class="buttons row">
+                    <button type="button" class=" btn-small" routerLink="/admin/group">Cancel</button>
+                    <button type="button" class=" btn-small bnt_blue" (click)="userGroupMap(grpId)">Map</button>
+                 </div>
+              </form>
+            </div> <!----- Groups Users Panesl End Here ----->
+
+
+              <!----- Groups Assets Panesl Start Here ----->
+            <div class="groups_assets asset_tab"  [ngClass]="{'active': assetNav_show}" id="inputtab_2" *ngIf="assetNav_show">
+              
+                 <div class="filter_section">
+                        <select class="custom-select slects_option" (change)="shareGrpDetails($event.target.value)">
+                          <option *ngFor="let group of groups ; index as i" [selected]="grpName === group.name" [value]="group.id">{{group.name}}</option>
+                        </select>                                          
+                 </div>
+               
+                <div class="applyFilers mt-4 " name="domain">
+                  <!-- <form name="form"> -->
+                    <select class="custom-select slects_option"  #assetType (change)="getThearpeuticAreas($event.target.value)" >
+                          <option selected="" value = "0">Select AT’s</option>
+                          <option *ngFor="let assetType of assetTypes ; index as i" [value]="assetType.id">{{assetType.userName}}</option>
+                    </select>
+                    <select class="custom-select slects_option" #ta  (change)="getdiseaseAndProducts($event.target.value)">
+                        <option selected="" value = "0">Select TA’s</option>
+                        <option *ngFor="let ta of therapeuticAreaMap | keyvalue" [value]="ta.key">{{ta.value}}</option>
+                        <!-- <option *ngFor="let ta of therapeuticAreaList ; index as i" [value]="ta">{{ta}}</option> -->
+                    </select>    
+                    <select class="custom-select slects_option" #disease >
+                        <option selected="" value = "0">Select DS’s</option>
+                        <!-- <option *ngFor="let dis of diseaseList ; index as i" [value]="dis">{{dis}}</option>                         -->
+                        <option *ngFor="let dis of diseaseMap | keyvalue" [value]="dis.key">{{dis.value}}</option>
+                    </select>    
+                    <select class="custom-select slects_option" #product>
+                        <option selected="" value = "0">Select Product</option>
+                        <option *ngFor="let prod of productMap | keyvalue" [value]="prod.key">{{prod.value}}</option>
+                        <!-- <option *ngFor="let prod of productList ; index as i" [value]="prod">{{prod}}</option> -->
+                    </select> 
+                    <button type="submit" class=" btn-small bnt_green" (click)="applyFIlter(assetType.value, ta.value, disease.value, product.value)">Apply</button>  
+                  <!-- </form>    -->
+                </div>
+                <form class="user_fileds" (ngSubmit)="userAssetMap(grpId)">
+                <div class="table-responsive">                    
+                  <table class="table ">
+                      <thead>
+                          <tr>
+                              <th>Asset Name</th>
+                              <th>Asset Type </th>
+                              <th>Therapeutic Area</th>
+                              <th>Disease State</th>
+                              <th>Products</th>
+                              <th class="text-center">Action</th>
+                          </tr>
+                      </thead>
+                      <tbody *ngIf="fullData">
+                          <tr *ngFor="let asset of assets ; index as i"> <!--class="active"-->
+                              <td >{{asset.title}}</td>                             
+                              <td >{{asset.assetType != null ? asset.assetType.userName: ""}}</td>
+                              <td >{{asset.therapeuticArea != null ?asset.therapeuticArea.name:""}}</td>
+                              <td >{{asset.diseaseState != null ? asset.diseaseState.name:""}}</td>
+                              <td >{{asset.product != null ?asset.product.name:""}}</td>
+                              
+                              <!-- <td class="text-center"><span class="td_filed"></span></td>
+                              <td class="text-center"><span class="td_filed"></span></td> -->
+                              <td class="text-center checkbox_square">
+                                  <div class="custom-control custom-checkbox ">
+                                    <input type="checkbox" class="custom-control-input" id="{{'customCheck0'+i}}"  value="{{asset.id}}" 
+                                    (change)="addToAssetList(asset.id,$event)" [checked]="assetIDList.indexOf(asset.id) > -1 ? true: false">
+                                    <label class="custom-control-label" for="{{'customCheck0'+i}}"></label>
+                                  </div>
+                              </td>
+                          </tr>   
+                      </tbody>
+
+                      <tbody *ngIf="filterData">
+                        <tr *ngIf="filterData&&resultList.length==0"><td colspan="6" style="text-align:center;color: red">{{message}}</td></tr>
+                        <tr *ngFor="let asset of resultList ; index as i"> <!--class="active"-->
+                            <td >{{asset.title}}</td>                             
+                            <td >{{asset.assetType != null ? asset.assetType.userName: ""}}</td>
+                            <td >{{asset.therapeuticArea != null ?asset.therapeuticArea.name:""}}</td>
+                            <td >{{asset.diseaseState != null ? asset.diseaseState.name:""}}</td>
+                            <td >{{asset.product != null ?asset.product.name:""}}</td>
+                            
+                            <!-- <td class="text-center"><span class="td_filed"></span></td>
+                            <td class="text-center"><span class="td_filed"></span></td> -->
+                            <td class="text-center checkbox_square">
+                                <div class="custom-control custom-checkbox ">
+                                  <input type="checkbox" class="custom-control-input" id="{{'customCheck0'+i}}"  value="{{asset.id}}" 
+                                  (change)="addToAssetList(asset.id,$event)" [checked]="assetIDList.indexOf(asset.id) > -1 ? true: false" >
+                                  <label class="custom-control-label" for="{{'customCheck0'+i}}"></label>
+                                </div>
+                            </td>
+                        </tr>   
+                    </tbody>
+                  </table>
+                </div>
+                 <div class="buttons row">
+                    <button type="button" class=" btn-small" routerLink="/admin/group">Cancel</button>
+                    <button class=" btn-small bnt_blue">Map</button>
+                 </div>
+              </form>
+            </div><!----- Groups Assets Panesl End Here ---->
+
+          </div>
+    </div>
+ </div>  
+  <!---- Add Groups  End Here ---->
+
+
+                     
+                      
+
+
+                </section> <!-- Right Panel End Here -->
+            </div>
+        </div>
+    </main>
+    <footer class="fot_main">
+      <div class="container">
+        <div class="fot_inner">
+          <div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+        </div>
+      </div>
+    </footer>
+  

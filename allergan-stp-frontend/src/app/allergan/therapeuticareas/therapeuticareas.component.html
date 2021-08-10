@@ -1,0 +1,307 @@
+<div class="boxed_wrapper pop_boxta">
+    <section class="section_tab">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+
+                    <section class="pop_container">
+
+                        <div class="pop-content">
+                            <div class="row pop-head">
+                                <div class="col-md-10 col-sm-10">
+                                    <h3 class="">Therapeutic Areas</h3>
+                                </div>
+                                <div class="colse_btn"><button [routerLink]="['/basecamp']"></button></div>
+                            </div>
+                            <div id="about" class="pop-scroll-bx">
+                                <div class="scroll-bx-inner">
+                                    <div class="row rmargin">
+
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="row">
+
+
+
+                                                <div class="col-md-3 col-sm-2 col-3 col_cxs"
+                                                    *ngFor="let tas of ta ; let i = index">
+                                                    <figure class="cares">
+                                                        <!-- && selectedIndex === i  mouseOvered=true-->
+                                                        <div class="figbx " (mouseover)="changeStyleAdd($event,i)"
+                                                            (mouseout)="changeStyleRemove($event,null)"
+                                                            (click)="changeStyle($event,null);diseaseStatesProducts(i,tas.id);getBreadCrumb(tas.name);updateRootList(i,tas)">
+                                                            <div class="figur">
+                                                                <div class="fig-check"></div>
+                                                                <div class=" hottopics">
+                                                                    <div class="hottips">
+                                                                        <p class="text_hip1">{{tas.userName}}</p>
+                                                                        <div class="text_hip2">
+                                                                            <p>New <b>{{tas.newProgress}}</b></p>
+                                                                            <p>Completed <b>{{tas.completed}}</b></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <span class="fig-title">{{tas.code}}</span>
+                                                                </div>
+                                                                <!-- <div *ngIf="tas.userName === 'Infectious Disease'">
+                                                                    <span class="fig-title">ID</span>
+                                                                </div>
+                                                                <div *ngIf="tas.userName === 'Diabetic Macular Edema'">
+                                                                    <span class="fig-title">DME</span>
+                                                                </div>
+
+                                                                <div *ngIf="tas.userName === 'RVO'">
+                                                                    <span class="fig-title">RVO</span>
+                                                                </div>
+
+                                                                <div *ngIf="tas.userName === 'Uveitis'">
+                                                                    <span class="fig-title">UV</span>
+                                                                </div>
+                                                                <div *ngIf="tas.userName === 'Gastroenterology'">
+                                                                    <span class="fig-title">GI</span>
+                                                                </div>
+                                                                <div *ngIf="tas.userName === 'Eye Care'">
+                                                                    <span class="fig-title">EY</span>
+                                                                </div>
+                                                                <div *ngIf="tas.userName === 'Womens Health'">
+                                                                        <span class="fig-title">WH</span>
+                                                                    </div> -->
+                                                            </div>
+                                                            <h4>{{tas.userName}}</h4>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row rmargin therapeuticState">
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <h3 class="pop-head">Disease States</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="showLoding">
+                                                <div class="col-md-8 col-sm-8">
+                                                    <div class="loding_bx">
+                                                        <div class="load-cir">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </div>
+                                                        <h4>Loading...</h4>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row" *ngIf="noDiseasStates">
+                                                <div class="col-md-8 col-sm-8">
+                                                    <div class="loding_bx">
+                                                        <div class="load-cir">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </div>
+                                                        <h4>Currently no Disease States</h4>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row" *ngIf="showDiseaseStates">
+
+                                                <div class="col-md-3 col-sm-3 p-items col_cxs"
+                                                    *ngFor="let diseaseStates of diseaseState ; let i = index">
+                                                    <figure class="cares d-states"
+                                                        (click)="loadDiseaseState(diseaseStates.id,i);getBreadCrumb(diseaseStates.name); updateRootListForDiseaseState(i, diseaseStates)">
+
+                                                        <div class="figbx"
+                                                            [ngClass]="{'active' : selectedDState === i }">
+                                                            <div class="figur">
+                                                                <div class="fig-check"></div>
+                                                                <div>
+                                                                    <span>{{diseaseStates.code}}</span>
+                                                                </div>
+                                                                <!-- <div *ngIf="diseaseStates.name === 'DryEye'">
+                                                                    <span>DE</span>
+                                                                </div>
+                                                                <div *ngIf="diseaseStates.name === 'Glaucoma'">
+                                                                    <span>GL</span>
+                                                                </div>
+                                                                <div *ngIf="diseaseStates.name === 'Uveitis'">
+                                                                        <span>UV</span>
+                                                                    </div>
+                                                                    <div *ngIf="diseaseStates.name === 'Diabetic Macular Edema'">
+                                                                            <span>DM</span>
+                                                                        </div>
+                                                                        <div *ngIf="diseaseStates.name === 'RVO'">
+                                                                                <span>RVO</span>
+                                                                            </div>   
+                                                                        <div *ngIf="diseaseStates.name === 'Menstrual Cycle'">
+                                                                                    <span>MC</span>
+                                                                        </div>                                                                    -->
+                                                                <!-- <img src="assets/images/{{diseaseStates.name}}.png" alt=""> -->
+                                                            </div>
+                                                            <h4>{{diseaseStates.name}}</h4>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-sm-5 col-md-5 col-lg-5">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <h3 class="pop-head">Products</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="showLoding">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="loding_bx">
+                                                        <div class="load-cir">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </div>
+                                                        <h4>Loading...</h4>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                        <p>&nbsp;</p>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row" *ngIf="noData">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="loding_bx">
+                                                        <div class="load-cir">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </div>
+                                                        <h4>Currently no products</h4>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row" *ngIf="showProducts">
+                                                <div class="col-md-4 col-sm-4 p-items col_cxs"
+                                                    *ngFor="let product of products; let i = index">
+                                                    <figure class="cares d-states"
+                                                        (click)="loadSuccessProduct(product.id,i);getBreadCrumb(product.name); updateRootListForProduct(i, product)">
+
+                                                        <div class="figbx"
+                                                            [ngClass]="{'active' : selectedProduct === i }">
+                                                            <!-- <div class="fig-check"></div> -->
+                                                            <div class="figur">
+                                                                    <div class="fig-check"></div>
+                                                                    <div>
+                                                                        <span>{{product.code}}</span>
+                                                                    </div>
+                                                                    <!-- <div *ngIf="product.name === 'LoLo Taytulla'">
+                                                                        <span>LT</span>
+                                                                    </div>
+                                                                    <div *ngIf="product.name === 'Abicipar'">
+                                                                            <span>DB</span>
+                                                                        </div>
+                                                                        <div *ngIf="product.name === 'Ozurdex'">
+                                                                                <span>Oz</span>
+                                                                            </div>
+                                                                            <div *ngIf="product.name === 'Restasis'">
+                                                                                    <span>RE</span>
+                                                                                </div>
+                                                                                <div *ngIf="product.name === 'Xen Gel'">
+                                                                                        <span>XE</span>
+                                                                                    </div>   
+                                                                                    <div *ngIf="product.name === 'LoLo Taytulla'">
+                                                                                            <span>LT</span>
+                                                                                        </div>                                             -->
+                                                                    
+                                                                                    
+                                                                    
+                                                                    
+
+                                                                <!-- <img src="assets/images/Products_{{i+1}}.png" alt=""> -->
+                                                            </div>
+
+                                                            <!-- <div class="figur"> -->
+                                                                   
+                                                            <h4>{{product.name}}</h4>
+                                                        </div>
+                                                    </figure>
+
+
+                                                </div>
+                                                <!-- <div class="col-md-4 col-sm-4 p-items">
+                            <figure class="cares d-states">
+                               
+                                <div class="figbx">
+                                    <div class="fig-check"></div>
+                                    <div class="figur">
+                                         
+                                        <img src="assets/images/Products_2.png" alt="">
+                                    </div>
+                                  
+                                </div>
+                            </figure>
+                        
+
+                        </div> -->
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row" *ngIf="noTAs">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="loding_bx">
+                                                <div class="load-cir">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                                <h4>Currently there is no therapeutic areas...</h4>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="overlay" (click)="removePop($event)"></div>

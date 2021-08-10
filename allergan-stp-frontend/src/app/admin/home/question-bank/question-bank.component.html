@@ -1,0 +1,230 @@
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+   <!-- right section  start -->
+   <section class="right_panel">
+ <!-- Question Bank Starts -->
+                      
+ <div class="question_bank"  id="pop_4">
+        <div class="right_panel_inner question_bank_list">
+            <div class="rph_header">
+                <div class="row">
+                    <div class="col-sm-6 col-md-8 col-lg-6 rph_left">
+                        <h5>Question Bank</h5>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="rph_right">
+                            <form class="serach_form d-flex">
+                            
+                                <button type="button" class="search_btn"><i class="fas fa-search"></i>
+                                  <div class="serach_box"><input type="text" placeholder="Search.."></div>
+                                </button>
+          
+                            </form>
+                            <button type="button" id="addquestions" class="btn-small bnt_blue"  [routerLink]="['/admin/question/add']">Add Question</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right_panel_box group_table">
+              <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="tableHead">
+                            <th>Title</th>                           
+                            <th>Questions</th>
+                            <th>Type</th>                            
+                            <th>Action</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let question of questions ; index as i">
+                            <td>{{question.title != null ? question.title : ""}}</td>
+                            <td>{{(question.qsData != null && question.qsData.question != null) ? question.qsData.question: ""}}</td>
+                            <td>{{(question.qsData != null && question.qsData.questionType != null)? question.qsData.questionType : ""}}</td>
+                            <td>
+                                <div class="info_btn">
+                                  <button type="button" class="query" routerLink="{{'/admin/question/edit/'+question.id}}"><img src="assets/images/query_icon.png"></button>
+                                  
+                              </div>
+                            </td>
+                            <td><button type="button" class="delete" (click)="deleteQuestion($event,question.id)"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Questions Starts-->
+       <!-- <div class="question_bank_Inner">
+            <div class="rph_header">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                        <h5>Add Question</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="right_panel_box2">
+              <form class="user_fileds">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label for="lastname">Title</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="text" class="form-control" id="" placeholder="" name="lastname">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Select TA</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Select TA</option>
+                              <option value="2">Select TA</option>
+                              <option value="3">Select TA</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Asset Type</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Asset Type</option>
+                              <option value="2">Asset Type</option>
+                              <option value="3">Asset Type</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Disease state</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Disease state</option>
+                              <option value="2">Disease state</option>
+                              <option value="3">Disease state</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Product</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Product</option>
+                              <option value="2">Product</option>
+                              <option value="3">Product</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Question Type</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Question Type</option>
+                              <option value="2">Question Type</option>
+                              <option value="3">Question Type</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Region</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Region</option>
+                              <option value="2">Region</option>
+                              <option value="3">Region</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 rph_left">
+                    <h5>Answers</h5>
+                    <div class="form-group row">
+                      <div class="col-sm-12 col-md-12 col-lg-12 feedBackWrap">
+                        <label for="lastname">A</label>
+                        <input type="text" class="form-control" id="" placeholder="" name="">
+                        <button type="button" class="delete"><i class="far fa-trash-alt"></i></button>
+                        <div class="feedBack">
+                          <h4>Feedback</h4>
+                          <input type="text" class="form-control" id="" placeholder="" name="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 feedBackWrap">
+                          <label for="lastname">B</label>
+                          <input type="text" class="form-control" id="" placeholder="" name="">
+                          <button type="button" class="delete"><i class="far fa-trash-alt"></i></button>
+                          <div class="feedBack">
+                            <h4>Feedback</h4>
+                            <input type="text" class="form-control" id="" placeholder="" name="">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="feedBack_btns row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 feedBack_btn1">
+                        <button class="btn btn_feedback">Add Answer</button>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 feedBack_btn2">
+                          <button class="btn btn_feedback btn_feedback_cancel">Cancel</button>
+                          <button class="btn btn_feedback">Save & Add Another</button>
+                          <button class="btn btn_feedback btn_feedback_save">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+         </div>-->
+      </div>
+
+
+
+    <!-- Question Bank Ends -->
+
+</section> <!-- Right Panel End Here -->
+</div>
+</div>
+</main>
+<footer class="fot_main">
+<div class="container">
+<div class="fot_inner">
+<div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+</div>
+</div>
+</footer>

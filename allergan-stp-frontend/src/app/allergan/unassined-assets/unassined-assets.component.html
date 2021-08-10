@@ -1,0 +1,65 @@
+
+    <div class="{{toData}}">
+         
+      <app-topics [getTopicsComponent]="isSearchActive"></app-topics>
+    
+        <div class="boxed_wrapper">
+             
+            <!-- Select course popUP -->
+            <div class="select_course small_pop">
+               <section class="pop_container">
+                  <div class="pop-content">
+                    <div class="pop-head">
+                            <div class="row unassined-row">
+                                 <!-- <button class="btn btn-info btn-lg previous" (click)="goBack(url)">Go Back</button> -->
+                            <div class="colse_btn"><button (click)="goBack(url)"></button></div> 
+                           <div class="col-md-6 col-sm-6">
+                                <h3><span></span>Unassigned Courses</h3>
+                            </div>
+                            <div class="col-md-6 col-sm-6 form_btns">
+                                 <button class="cancel_btn" (click)="cancel(url)" type="button">Cancel</button>
+                                 <button class="updat_btn" [disabled]="unassinedAssets" (click)="updateAll()">Add To Journey</button>
+                         </div>
+                        </div>
+                     </div>
+                     <div id="pop_small" class="pop-scroll-bx">
+                        <div class="scroll-bx-inner">
+                           <div class="small_pop_items">
+                              <ul class="course_trainigs row">
+                                 <li *ngFor="let course of courses" class="col-6 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="course_no">
+                                       <p [title]="course.title">{{course?.title}}</p>
+                                       <div class="course_btns">
+                                            <span class="{{course?.contentType?.image}}_btn"></span>                         
+                                       </div>
+                                     <div class="add_course" ><span>Add Course</span><input  class="mat-checkbox-inner-container" (change)="onCheckboxChagen($event, course.id)" type="checkbox"></div>
+                                    </div>
+                                 </li>
+                                 <div class="col-md-12 col-sm-12" style = "text-align:center;" *ngIf="courses?.length == 0">
+                                    <p>Course not available.</p>
+                                 </div>
+                              </ul>
+                           </div>
+                           
+
+
+
+                           
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+            <footer>
+                <div class="auto-container">
+                    <div class="row ">
+                        <div class="col-md-12 ">
+                            <!-- <p class="footer1 ">© ALLERGAN 2019</p> -->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            
+        </div>
+        <div class="overflow"></div>
+    </div>

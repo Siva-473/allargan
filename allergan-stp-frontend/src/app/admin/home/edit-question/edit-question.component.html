@@ -1,0 +1,208 @@
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+   <!-- right section  start -->
+   <section class="right_panel">
+ <!-- Question Bank Starts -->
+                      
+ <div class="question_bank"  id="pop_4">
+        
+        <!-- Add Questions Starts-->
+        <div class="question_bank_Inner">
+            <div class="rph_header">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                        <h5>Edit Question</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="right_panel_box2">
+                <form class="user_fileds" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label for="lastname">Title</label>
+                          <input type="hidden" class="form-control" placeholder="" name="id" [(ngModel)]="model.id"  >
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="text" class="form-control" placeholder="" name="title" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required minlength="3" maxlength="30">
+                            <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                                <div *ngIf="title.errors.required">Title is required</div>
+                            </div>
+                            <div *ngIf="title.errors?.minlength" class="invalid-feedback">
+                                    Title must be at least 3 characters long.
+                            </div> 
+                            <div *ngIf="title.errors?.maxlength" class="invalid-feedback"> 
+                                    Title can be max 30 characters long.
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                              <label for="lastname">Question</label>
+                            </div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                              <textarea rows="4" cols="50" class="form-control" placeholder="" name="question" [(ngModel)]="model.question" #question="ngModel" [ngClass]="{ 'is-invalid': f.submitted && question.invalid }" required minlength="3" maxlength="250"></textarea>
+                                <div *ngIf="f.submitted && question.invalid" class="invalid-feedback">
+                                    <div *ngIf="question.errors.required">Question is required</div>
+                                </div>
+                                <div *ngIf="question.errors?.minlength" class="invalid-feedback">
+                                  Question must be at least 3 characters long.
+                                </div> 
+                                <div *ngIf="question.errors?.maxlength" class="invalid-feedback"> 
+                                  Question can be max 250 characters long.
+                                </div>
+                            </div>
+                          </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Asset Type</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option" [ngClass]="{'invalid-select': assetTypeMessage}" #assetType="ngModel" (change)="getThearpeuticAreas($event.target.value)" name="assetType" [(ngModel)]="model.assetTypeId" [ngClass]="{ 'is-invalid': f.submitted && assetType.invalid }" required>
+                                <option selected="" value = "0">Select</option>
+                                <option *ngFor="let assetType of assetTypes ; index as i" [value]="assetType.id" [selected]="assetType.id == model.assetTypeId">{{assetType.userName}}</option>
+                          </select>
+                          <div *ngIf="assetTypeMessage" class="invalid-txt">
+                            <div *ngIf="assetTypeMessage">Asset Type is required</div>
+                          </div> 
+                          <div *ngIf="f.submitted && assetType.invalid" class="invalid-feedback">
+                              <div *ngIf="assetType.errors.required">Asset Type is required</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Select TA</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option" [ngClass]="{'invalid-select': taMessage}" #ta="ngModel"  (change)="getdiseaseAndProducts($event.target.value)" name="ta" [(ngModel)]="model.therapeuticAreaId" [ngClass]="{ 'is-invalid': f.submitted && ta.invalid }" required>
+                                <option selected="" value = "0">Select</option>
+                                <!-- <option *ngFor="let ta of therapeuticAreaList ; index as i" [value]="ta">{{ta}}</option> -->
+                                <option *ngFor="let ta of therapeuticAreaMap | keyvalue" [value]="ta.key" [selected]="ta.key == question.therapeuticAreaId">{{ta.value}}</option>
+                            </select> 
+                            <div *ngIf="taMessage" class="invalid-txt">
+                              <div *ngIf="taMessage">TA is required</div>
+                            </div> 
+                            <div *ngIf="f.submitted && ta.invalid" class="invalid-feedback">
+                                <div *ngIf="ta.errors.required">TA is required</div>
+                            </div>
+                            
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Disease state</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option" #disease name="disease" [(ngModel)]="model.diseaseStateId" >
+                                <option selected="" value = "0">Select</option>
+                                <!-- <option *ngFor="let dis of diseaseList ; index as i" [value]="dis">{{dis}}</option> -->
+                                <option *ngFor="let dis of diseaseMap | keyvalue" [value]="dis.key" [selected]="dis.key == question.diseaseStateId">{{dis.value}}</option>
+                            </select> 
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Product</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option" #product name="product" [(ngModel)]="model.productId">
+                                <option selected="" value = "0">Select</option>
+                                <!-- <option *ngFor="let prod of productList ; index as i" [value]="prod">{{prod}}</option> -->
+                                <option *ngFor="let prod of productMap | keyvalue" [value]="prod.key" [selected]="prod.key == question.productId">{{prod.value}}</option>
+                            </select> 
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Question Type</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option" name="QType" [(ngModel)]="model.QType" #QType="ngModel" (change)="typeSection($event.target.value)" [ngClass]="{ 'is-invalid': f.submitted && QType.invalid }" required>
+                              <option value="SINGLE_CHOICE" [selected]="model.QType == 'SINGLE_CHOICE'">Single Choice</option>
+                              <option value="MULTIPLE_CHOICE" [selected]="model.QType == 'MULTIPLE_CHOICE'">Multiple Choice</option>
+                          </select>
+                          <div *ngIf="f.submitted && QType.invalid" class="invalid-feedback">
+                              <div *ngIf="QType.errors.required">Question Type is required</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Region</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select class="custom-select slects_option">
+                              <option ></option>
+                              <option value="1">Region</option>
+                              <option value="2">Region</option>
+                              <option value="3">Region</option>
+                            </select>
+                        </div>
+                      </div> -->
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 rph_left">
+                    <span class="invalid-txt">{{ansMessage}}</span>
+                    <h5>Answers</h5>
+                    <div class="form-group row" *ngFor="let answer of answers; let i = index">
+                      <div class="col-sm-12 col-md-12 col-lg-12 feedBackWrap">                        
+                        <label >{{nameArray[i].name}}</label>
+                        <span>
+                          <input type ="radio" [id]="answer.text" value="{{answer.correct}}" name="radio-group" *ngIf="radioDisplay"  (click)="onItemChange(answer)" [checked]="answer.correct"/>
+                          <input type ="checkbox" [id]="answer.text"  value="{{answer.correct}}" name="radio-group" *ngIf="checkBoxDisplay" (click)="onItemChange(answer)" [checked]="answer.correct"/>
+                        </span>
+                          <input type="text" class="form-control" id="" placeholder="" name="{{'ans' + i}}" [value]="answer.text" [(ngModel)]="answer.text">
+                        <!-- <button type="button" class="delete"><i class="far fa-trash-alt"></i></button> -->
+                            <span (click)="onRemoveRow(answer.id)" class="delete"><i class="far fa-trash-alt"></i></span>
+                      </div>
+                    </div>
+                    
+                    <div class="feedBack_btns row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 feedBack_btn1">
+                        <span class="btn btn_feedback" (click)="onAddRow()">Add Answer</span>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 feedBack_btn2">
+                          <button type="button" class="btn btn_feedback btn_feedback_cancel" routerLink="/admin/questionBank">Cancel</button>
+                          <!-- <button class="btn btn_feedback">Save & Add Another</button> -->
+                          <button class="btn btn_feedback btn_feedback_save">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+         </div>
+      </div>
+
+
+
+    <!-- Question Bank Ends -->
+
+</section> <!-- Right Panel End Here -->
+</div>
+</div>
+</main>
+<footer class="fot_main">
+<div class="container">
+<div class="fot_inner">
+<div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+</div>
+</div>
+</footer>

@@ -1,0 +1,58 @@
+<div class="min_contner silde_14 ht100">
+
+   <app-topics [getTopicsComponent]="isSearchActive"></app-topics>
+
+   <div class="boxed_wrapper">
+
+      <!-- Select course popUP -->
+      <div class="select_course small_pop">
+         <section class="pop_container">
+            <div class="pop-content">
+               <div class="pop-head">
+
+                     <div class="row">
+                           <!-- <button class="btn btn-info btn-lg previous" (click)="goBack(url)">Go Back</button> -->
+                      <div class="colse_btn"><button (click)="goBack(url)"></button></div> 
+                     <div class="col-md-6 col-sm-6">
+                          <h3><span></span>Completed Courses</h3>
+                      </div>
+                  </div>
+               </div>
+               <div id="pop_small" class="pop-scroll-bx nano">
+                  <div class="scroll-bx-inner nano-content">
+                     <div class="small_pop_items">
+                        <ul class="course_trainigs">
+                           <li *ngFor="let course of courses">
+                              <div class="course_no">
+                                 <p>{{course.asset.title}}</p>
+                                 <div class="course_btns">
+                                    <span class="play_btn"></span>
+                                    <span class="topic_points">{{course.asset.awardPoints}} points</span>
+                                 </div>
+                                 <div class="add_course"><span>Add Course</span><button>+</button></div>
+                              </div>
+                           </li>
+
+                        </ul>
+                        <!-- <div class="form_btns">
+                                      <button class="cancel_btn" type="button">Cancel</button>
+                                      <button class="updat_btn">Update Profile</button>
+                        </div> -->
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <footer>
+         <div class="auto-container">
+            <div class="row ">
+               <div class="col-md-12 ">
+                  <!-- <p class="footer1 ">© ALLERGAN 2019</p> -->
+               </div>
+            </div>
+         </div>
+      </footer>
+   </div>
+</div>

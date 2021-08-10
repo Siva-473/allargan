@@ -1,0 +1,23 @@
+export class AdminAsset {
+    id:Number;
+    userId:Number;
+    title:string;
+    duration:Number;
+    description:string;
+    expiration:Number;
+    awardPoints:Number;
+    status:boolean=true;
+    autoAssin:boolean=false;
+    mandatory:boolean=false;
+    deepLink:string;
+    assetType:number; 
+    therapeuticArea:number; 
+    product:number; 
+    diseaseState:number; 
+    contentType:number; 
+    source:number; 
+    region:number; 
+    country:number; 
+    quize:number; 
+    assetFile:File;
+}

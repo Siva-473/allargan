@@ -1,0 +1,102 @@
+﻿
+ 
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+
+                <!-- right section  start -->
+                <section class="right_panel">
+                      <div class="users_box hide_tab active" id="pop_1" >
+                            <div class="right_panel_inner">
+                                  <div class="rph_header">
+                                      <div class="row">
+                                          <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                                              <h5>Users</h5>
+                                          </div>
+
+                                          <div class="col-sm-6 col-md-6 col-lg-6">
+                                              <div class="rph_right">
+                                                  <form class="serach_form">
+                                                    
+                                                      <!-- <button type="button" class="search_btn"><i class="fas fa-search"></i>
+                                                        <div class="serach_box"><input type="text" placeholder="Search.."></div>
+                                                      </button> -->
+
+                                                  </form>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="right_panel_box">
+                                    <div class="table-responsive">
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th>First Name</th>
+                                                  <th>Email ID</th>
+                                                  <th>Job Title</th>
+                                                  <th>System Roles</th>
+                                                  <th></th>
+                                                  <th>Action</th>
+                                                  <!-- <th></th> -->
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr *ngFor="let user of users ; index as i">
+                                                  <td>
+                                                      <!-- <a routerLink="{{'/admin/user/edit/'+user.id}}"> -->
+                                                        {{user.firstName}}
+                                                    <!-- </a> -->
+                                                  </td>
+                                                  <!-- <td>{{user.lastName}}</td> -->
+                                                  <td>{{user.emailID}}</td>
+                                                  <td>{{user.roleName}}</td>
+                                                  <td><div *ngFor="let role of user.role;">{{role.name.replace('ROLE_', '')+","|lowercase}}</div></td>
+                                                  <!-- <td *ngIf="user.status==true" [ngClass]="{ 'approved' : true}">Approved</td>
+                                                  <td  *ngIf="user.status!=true" [ngClass]="{'pending':true}">Pending</td> -->
+                                                  <td>
+                                                      <div class="custom-switch custom-switch-label-onoff pl-0">
+                                                          <input class="custom-switch-input" id="{{'btn_0'+i}}" [checked]="(user.status==true) ? false: true"  (change) ="status($event,user.id)" type="checkbox">
+                                                          <label class="custom-switch-btn" for="{{'btn_0'+i}}"></label>
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                      <div class="info_btn"><button type="button" routerLink="{{'/admin/user/edit/'+user.id}}"><img src="assets/images/query_icon.png" ></button></div>
+                                                  </td>
+                                                  <!-- <td>
+                                                       <button type="button" class="delete" (click)="remove(user.id)"><i class="far fa-trash-alt"></i></button>
+                                                  </td> -->
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                      </div>
+                                  </div>
+                            </div>
+                             
+
+                      </div>
+
+                <!--------- Users Details ---------->
+
+                     
+                      
+
+
+                </section> <!-- Right Panel End Here -->
+            </div>
+        </div>
+    </main>
+    <footer class="fot_main">
+      <div class="container">
+        <div class="fot_inner">
+          <div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+        </div>
+      </div>
+    </footer>
+  

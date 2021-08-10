@@ -1,0 +1,91 @@
+<app-admin-top-nav></app-admin-top-nav>
+<main class="main_container">
+  <div class="container">
+      <div class="main_con_inner">
+    
+
+          <app-admin-side-nav></app-admin-side-nav>
+
+          <!-- right section  start -->
+          <section class="right_panel">
+<!-- Quiz Starts -->
+                      
+<div class="quiz_wrap hide_tab active"  id="pop_6">
+    <div class="right_panel_inner quiz_list">
+        <div class="rph_header">
+            <div class="row">
+                <div class="col-sm-6 col-md-8 col-lg-6 rph_left">
+                    <h5>Quiz Bank</h5>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="rph_right">
+                        <form class="serach_form d-flex">
+                        
+                            <button type="button" class="search_btn"><i class="fas fa-search"></i>
+                              <div class="serach_box"><input type="text" placeholder="Search.."></div>
+                            </button>
+      
+                        </form>
+                        <button type="button" id="addquiz" class="btn-small bnt_blue" [routerLink]="['/admin/quiz/add']">Add Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right_panel_box group_table">
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>                       
+                        <th class="text-center">Number of Questions</th>                       
+                        <!-- <th class="text-center">Added</th> -->
+                        <th></th>
+                        <th>Action</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let q of quiz ; index as i">
+                        <td>{{q.title}}</td>
+                        <!-- <td>{{q[4]}}</td> -->
+                        <td class="text-center">{{getQuestionSize(q.jsonData)}}</td>
+                        <!-- <td>{{q[6]}}</td> -->
+                        <!-- <td class="text-center">{{q.dateCreated | date : "dd.MM.y"}}</td> -->
+                        <td>
+                            <div class="action_btn ">
+                              <button type="button" class="query" routerLink="{{'/admin/quiz/edit/'+q.id}}"><img src="assets/images/query_icon.png"></button>
+                           
+							 
+                          </div>
+                        </td>
+                        <td>   <button type="button" class="delete" (click)="deleteQuizClick($event,q.id)"><i class="far fa-trash-alt"></i></button></td>
+                        <td> <span  class="clone"  (click)="openClone($event,q.id)" [ngClass]="{active_clone: isActive(q.id)}">
+                                <img src="assets/images/clone.png">
+                                <div class="clone_pop" routerLink="{{'/admin/quiz/clone/'+q.id}}">
+                                <span>Clone</span>
+                                </div>
+                            </span></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Quiz Ends -->
+</section> <!-- Right Panel End Here -->
+</div>
+</div>
+</main>
+<footer class="fot_main">
+<div class="container">
+<div class="fot_inner">
+<div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+</div>
+</div>
+</footer>

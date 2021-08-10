@@ -1,0 +1,47 @@
+<!-- sidebar  start -->
+<aside class="left_panel">
+    <div class="left_panel_list">
+        <ul class="nav_list">
+            <li class="users" (click)="navClick($event)" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"><a class='clickpopa' data-attr="1"
+                    [routerLink]="['/admin']">Users</a>
+            </li>
+            <li class="groups" *ngIf="rolePresent" (click)="navClick($event)" routerLinkActive="active">
+                <a class='clickpopa' data-attr="2" [routerLink]="['/admin/group']">Groups</a>
+            </li>
+            <li class="assets" *ngIf="rolePresent" (click)="navClick($event)" routerLinkActive="active">
+                <a class='clickpopa' data-attr="3" [routerLink]="['/admin/asset']">Assets</a>
+            </li>
+            <li class="question" *ngIf="rolePresent" (click)="navClick($event)" routerLinkActive="active">
+                <a class='clickpopa' data-attr="3" [routerLink]="['/admin/questionBank']">Question Bank</a>
+            </li>
+            <li class="quiz" *ngIf="rolePresent" (click)="navClick($event)" routerLinkActive="active">
+                <a class='clickpopa' data-attr="6" [routerLink]="['/admin/quiz']">QUIZ</a>
+            </li>
+            <li class="import" *ngIf="rolePresent" (click)="navClick($event)" routerLinkActive="active">
+                <a class='clickpopa' data-attr="5" [routerLink]="['/admin/batchimport']">Batch Import</a>
+            </li>
+            <!-- <li class="meta_deta dropdown"><a href="#" class=" dropdown-toggle" data-toggle="dropdown">Meta Data<i class="fas fa-angle-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="#">Link 1</a></li>
+                            <li><a href="#">Link 2</a></li>
+                            <li><a href="#">Link 3</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="reports dropdown"><a href="#" class=" dropdown-toggle" data-toggle="dropdown">Reports <i class="fas fa-angle-down"></i></a>
+                    <div class="dropdown-menu">
+
+
+                        <ul>
+                            <li><a href="#">Link 1</a></li>
+                            <li><a href="#">Link 2</a></li>
+                            <li><a href="#">Link 3</a></li>
+                        </ul>
+                    </div>
+                </li> -->
+
+        </ul>
+    </div>
+</aside><!-- sidebar  end -->

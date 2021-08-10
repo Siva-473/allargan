@@ -1,0 +1,270 @@
+
+<div class="{{thisContainerClass}}">
+    <div class="right_icon">
+
+            
+        <div class="box_right_notif">
+            <div class="secral_point">
+                <i class="fa_icon ball"></i>
+               
+                <!-- <span class="num">4</span> -->
+                <!-- <div class="hover_showbox">
+                        <ul>
+                            <li class="icon">
+                                A new update is avaiable for Module 03 <span></span>
+                            </li>
+                            <li class="icon">
+                               A new hot topic has been added to you schedule <span></span>
+                            </li>
+                            <li class="icon">
+                                <b class="text_last">Dismiss All</b>
+                            </li>
+                        </ul>
+                    </div> -->
+            </div>
+        </div>
+        <div class="box_right_notif">
+            <div class="secral_point help_2">
+                <i class="fa_icon help"></i>
+            </div>
+        </div>
+        <div class="box_right_notif">
+            <div class="secral_point badgesa">
+                <i class="fa_icon batch"></i>
+                <!-- <div class="hover_showbox badgesa">
+                        <div class="totle_point"> -->
+                <!-- <p>Total Points</p> -->
+                <!-- <span>165</span> -->
+                <!-- </div>
+                        <div class="my_batch">
+                            <p>My Badges</p>
+                            <div class="padgess">
+                                <span><img src="assets/images/badges_1.png" alt=""></span>
+                                <span><img src="assets/images/badges_2.png" alt=""></span>
+                            </div>
+                        </div>
+                    </div> -->
+            </div>
+        </div>
+        <!-- <div class="box_right_notif">
+            <div class="secral_point last">
+                <i class="fa_icon last"></i>
+            </div>
+        </div> -->
+    </div>
+    <div class="boxed_wrapper">
+        <section class="mainmenu-area">
+            <div class="auto-container">
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="mycontainer menu_tab" (click)="goBack(url)">
+                            <a class="mybtn2 btn btn-link btn-xs">
+                                <i class="fa fa-arrow-circle-o-left" style="font-size:2.5rem;vertical-align: middle;">
+                                </i>
+                            </a>
+                        </div>
+
+                        <div class="main-logo hidden-xs">
+                            <a href=""><img src="assets/images/logo2.png" alt=""></a>
+                        </div>
+
+                        <div class="menu_tab">
+                            <button type="button" id="menu_btn" class="navbar" data-toggle="collapse"></button>
+                            <div class="collapse mobile_menu">
+
+                                <div class="user">
+                                    <div class="user_thumb"><img src="assets/images/main_user.png" alt=""></div>
+                                </div>
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#" class="">My Profile</a></li>
+                                    <li><a href="" class="">Scientific Foundations</a></li>
+                                    <li><a href="" class="">Core Product Data</a></li>
+                                    <li><a href="" class="">Pipeline and Launch</a></li>
+                                    <li><a href="" class="">Field Tools</a></li>
+                                    <li><a href="" class="">Hot Topics</a></li>
+                                    <li><a href="" class="">Medical Meetings</a></li>
+                                    <li><a href="" class="">Expert Talks</a></li>
+                                    <li><a href="" class="">Compliance Wire</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <div class="searchic">
+                                
+                                <input type="text" class="search_test" name="">
+                                <button type="button" class="search_ic" id="search_btn"></button>
+                            </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Select course popUP -->
+      
+                <!-- <div class="loader" *ngIf="loadHide">
+                  <h4 >Loading please wait...</h4>
+                </div> -->
+
+                <div *ngIf="loadHide" >
+                    <div class="loader">Loading...</div>
+                    <div class="loaderOverlay"></div>
+                    <div>
+        <!-- <app-alerts></app-alerts> -->
+                </div>
+                </div>
+             
+        <!-- <div class="loader">Loading...</div> -->
+        <div class="select_course small_pop complet_table">
+                
+            <section class="pop_container">
+                  
+                <div class="pop-content">
+                      
+                    <div class="pop-head">
+                        <div class="row pop-head-inner">
+                            <div class="colse_btn"><button (click)="goBack(url)"></button></div>
+                            <!-- <button class="btn btn-info btn-lg previous" (click)="goBack(url)">Go Back</button> -->
+                            <div class="col-md-6 col-sm-6">
+                                <h3><span></span>Completed Courses</h3> <h4 *ngIf="error" style="color: red"></h4>
+                                <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        Sorry, the file is not available!!! 
+                                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                       </button>
+                                     </div>
+                            </div>
+
+                            
+                           
+                            <!-- <a class="btn btn-primary back">Go Back</a> -->
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="pop_head_r">
+                                    <!-- <h3 class="compl_points">Total Points <b>165</b></h3> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div id="pop_small" class="pop-scroll-bx nano">
+                        <div class="scroll-bx-inner">
+                            <div class="table-responsive small_pop_items">
+
+                                    <!-- <div class="loading-mask">
+                                            <span>Loading...</span>
+                                          </div> -->
+                                         
+                                <table class=" table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Course Details</th>
+                                            <th>Completed On</th>
+                                            <!-- <th>Points</th> -->
+                                            <!-- <th>Certification</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let course of courses">
+                                            <td>
+                                               <span class="{{course?.asset?.contentType?.image}}_btn"></span>
+                                            </td>
+                                            <td>
+                                                <a [ngClass]="{'clickable': course.asset.contentType?.id!=8}"(click)="course.asset.contentType?.id!=8?openAsset(course):''">
+                                                    <span>
+                                                        {{course?.asset?.title}}
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td><span>{{course?.assetCompletionDate | date:"dd/MM/yyyy"}}</span></td>
+                                            <!-- <td><span>20</span></td> -->
+                                            <!-- <td><span class="icon cert_icon"></span></td> -->
+                                        </tr>
+
+                                        <!-- <tr>
+                                        <td><span class="icon note_icon "></span></td>
+                                        <td>
+                                            <span>GPSE Reporting Adverse Events and Other Safety Information Quiz 2018-2019</span>
+                                        </td>
+                                        <td><span>12/13/2018</span></td>
+                                         <td><span>10</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+                                        <!-- <tr>
+                                        <td><span class="icon notepad_icon "></span></td>
+                                        <td>
+                                            <span>GPSE-PVOPS-P-001 Policy for Reporting Adverse Events and Other Safety Information</span>
+                                        </td>
+                                        <td><span>12/13/2018</span></td>
+                                         <td><span>50</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+                                        <!-- <tr>
+                                        <td><span class="icon notepad_icon "></span></td>
+                                        <td>
+                                            <span>NJ Earned Sick Leave Awareness</span>
+                                        </td>
+                                        <td><span>12/03/2018</span></td>
+                                         <td><span>20</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+                                        <!-- <tr>
+                                        <td><span class="icon notepad_icon "></span></td>
+                                        <td>
+                                            <span>Global IT Incident Management SOP</span>
+                                        </td>
+                                        <td><span>11/28/2018</span></td>
+                                        <td><span>15</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+                                        <!-- <tr>
+                                        <td><span class="icon type_icon "></span></td>
+                                        <td>
+                                            <span>LARS System Administration IT-SOP-050-025</span>
+                                        </td>
+                                        <td><span>11/28/2018</span></td>
+                                         <td><span>15</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+                                        <!-- <tr>
+                                        <td><span class="icon note_icon "></span></td>
+                                        <td>
+                                            <span>LARS User Guide IT-WI-060-014</span>
+                                        </td>
+                                        <td><span>11/28/2018</span></td>
+                                        <td><span>10</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+                                        <!-- <tr>
+                                        <td><span class="icon note_icon "></span></td>
+                                        <td>
+                                            <span>Global HAR Computer System Related Incident Processing</span>
+                                        </td>
+                                        <td><span>11/05/2018</span></td>
+                                         <td><span>25</span></td>
+                                        <td><span class="icon cert_icon"></span></td>
+                                      </tr> -->
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <div class="auto-container">
+            <div class="row ">
+                <div class="col-md-12 ">
+                    <!-- <p class="footer1 ">© ALLERGAN 2019</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="overlay"></div>
+</div>

@@ -1,0 +1,113 @@
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+    <!-- Page section start -->
+    <main class="main_container">
+        <div class="container">
+            <div class="main_con_inner">
+          
+
+                <app-admin-side-nav></app-admin-side-nav>
+   <!-- right section  start -->
+   <section class="right_panel">
+                      <div class="batch_import"  id="pop_5">
+                        <div class="batch_import_inner">
+                            <div class="rph_header">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                                        <h5>Batch Import</h5>
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="rph_right">
+                                            <!-- <form class="serach_form d-flex">
+                                                <button type="button" class="search_btn"><i class="fas fa-search"></i>
+                                                   <div class="serach_box" style="display: none;"><input type="text" placeholder="Search.."></div>
+                                                </button>
+                                            </form> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="batch_import_type">
+                              <div class="batch_import_type_inner row">
+                                <div class="col-12 info_txt">
+                                  <p>This tool allows you to add users, assets (make sure you have moved the asset to server),questions, 
+                                      from an excel file. The format of the file is at least one row in an excel spreadsheet
+                                      and then uploading that file here.</p>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 import_formate">
+                                  <p>You can download a spreadsheet here,</p>
+                                  <ul class="import_list">
+                                      
+                                    <li *ngIf="CH_B" class="col-12 col-sm-12 col-md-4 col-lg-4 text-center"><a [href] = "userTemplat" download = "Users.xlsx">User</a> </li>
+                                    <li *ngIf="IE_B" class="col-12 col-sm-12 col-md-4 col-lg-4 text-center"><a (click)="openAsset('Users.xlsx')"> User</a></li>
+                                    <li *ngIf="CH_B" class="col-12 col-sm-12 col-md-4 col-lg-4 text-center"><a [href] = "assetTemplat" download = "Assets.xlsx">Assets</a></li>
+                                    <li *ngIf="IE_B" class="col-12 col-sm-12 col-md-4 col-lg-4 text-center"><a (click)="openAsset('Assets.xlsx')"> Assets</a></li>
+                                    <li *ngIf="CH_B" class="col-12 col-sm-12 col-md-4 col-lg-4 text-center"><a [href] = "questionTemplat" download = "Questions.xlsx">Questions</a></li>
+                                    <li *ngIf="IE_B" class="col-12 col-sm-12 col-md-4 col-lg-4 text-center"><a (click)="openAsset('Questions.xlsx')">Questions</a></li>
+                                  </ul>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 upload_file">
+                                  <p>If you have finished creating or updating your spreadsheet and would like to upload it now,
+                                      you can do so here:</p>
+                                      
+                                      <form class="clearfix" [formGroup] = "userForm"  (ngSubmit)= "onSubmitBatchImportUserForm($event)" >
+                                        <div class="upload_users_wrap form-title">
+                                          <h3>Upload Users here:</h3>
+                                        </div>
+                                        <div class="upload_sheet form-select">
+                                          <input type="file" formControlName = "batchImportUserFile" id = "batchImportUserFile" class="batch_upload" (change)="onUserFileChange($event.target.files)">
+                                          <label for="batchImportUserFile">{{userBatchFile}}</label>
+                                          <!-- <button class="btn btn_upload">Upload</button> -->
+                                          <input class="btn btn_upload" type="submit" value="Upload" >
+                                          <!-- <img src="images/quest.png" alt="quest"> -->
+                                        </div>
+                                      </form>
+
+
+                                      
+                                      <form class="clearfix" [formGroup] = "assetForm" (ngSubmit)= "onSubmitBatchImportAssetForm($event)" >
+                                        <div class="upload_assets_wrap form-title">
+                                          <h3>Upload Assets here:</h3>
+                                        </div>
+                                        <div class="upload_sheet form-select">
+                                          <input type="file" class="batch_upload" formControlName = "batchImportAssetFile"  (change)="onAssetFileChange($event.target.files)" id="batchImportAssetFile">
+                                          <label for="batchImportAssetFile">{{assetBatchFile}}</label>
+                                          <button class="btn btn_upload">Upload</button>
+                                          <!-- <img src="images/quest.png" alt="quest"> -->
+                                        </div>
+                                      </form>
+
+
+                                      <form class="clearfix" [formGroup] = "questionForm" (ngSubmit)= "onSubmitBatchImportQuestionForm($event)">
+                                        <div class="upload_questions_wrap form-title">
+                                          <h3>Upload Question here:</h3>
+                                        </div>
+                                        <div class="upload_sheet form-select">
+                                          <input type="file" class="batch_upload"  formControlName = "batchImportQuestionFile" (change)="onQuestionFileChange($event.target.files)" id="batchImportQuestionFile">
+                                          <label for="batchImportQuestionFile">{{questionBatchFile}}</label>
+                                          <button class="btn btn_upload">Upload</button>
+                                          <!-- <img src="images/quest.png" alt="quest"> -->
+                                        </div>
+                                      </form>
+                                </div>
+                              </div>
+                            </div> 
+                        </div>
+                      </div>
+
+                    <!-- Batch Import Ends -->
+					
+					  <!-- Question Bank Ends -->
+
+</section> <!-- Right Panel End Here -->
+</div>
+</div>
+</main>
+<footer class="fot_main">
+<div class="container">
+<div class="fot_inner">
+<div class="row"><div class="col-sm-12 col-md-12"><p>© ALLERGAN 2019</p></div></div>
+</div>
+</div>
+</footer>

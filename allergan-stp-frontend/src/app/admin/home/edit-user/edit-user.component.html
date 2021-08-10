@@ -1,0 +1,435 @@
+<app-admin-top-nav></app-admin-top-nav>
+<main class="main_container">
+  <div class="container">
+      <div class="main_con_inner">
+    
+
+          <app-admin-side-nav></app-admin-side-nav>
+
+          <!-- right section  start -->
+          <section class="right_panel">
+
+<div class="users_detials2">
+  <div class="right_panel_inner border_dashed">
+      <div class="rph_header">
+          <div class="row">
+              <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                  <h5>Users Details</h5>
+              </div>
+          </div>
+      </div>
+      <div class="right_panel_box2">
+          <form  [formGroup]="countryForm" class=" user_fileds">
+              <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >First Name</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="text" class="form-control "  formControlName="firstname" id="firstname"  [ngModel]="editUser.firstName"  [ngClass]="{ 'is-invalid': edituserprofile && f.firstname.errors }" name="firstname" disabled >
+                          <div *ngIf="edituserprofile && f.firstname.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstname.errors.required">Firstname is required</div>
+                            <div *ngIf="f.firstname.errors.minlength">Firstname must be at least 3 characters</div>
+                
+                            
+                        </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Last Name</label>
+                        </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="text" class="form-control" formControlName="lastnames" id="lastnames" [ngModel]="editUser.lastName" name="lastnames" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label >Email ID:</label>
+                        </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="email" class="form-control" formControlName="mail" id="mail" [ngModel]="editUser.email"  [ngClass]="{ 'is-invalid': edituserprofile && f.mail.errors }" name="mail" disabled>
+                        
+                          <div *ngIf="edituserprofile && f.mail.errors" class="invalid-feedback">
+                            <div *ngIf="f.mail.errors.required">Firstname is required</div>
+                            <div *ngIf="f.mail.errors.minlength">Firstname must be at least 3 characters</div>
+                
+                            
+                        </div>
+
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label>Title</label>
+                        </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="text" class="form-control" formControlName="title" id="title" [ngModel]="editUser.title" name="title" disabled>
+                        </div>
+                      </div>
+
+
+                  </div>
+                
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label>Employee Type</label>
+                        </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="text" class="form-control" formControlName="etype" id="etype" [ngModel]="editUser.etype" name="etype1" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label>Country</label>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            
+                        
+                            <input type="text" class="form-control" formControlName="homeCountry" id="homeCountry" [ngModel]="editUser.homeCountry" name="homeCountry" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                          <label>Status</label>
+                        </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                          <div class="custom-switch custom-switch-label-onoff d-flex">
+                              <input class="custom-switch-input" id="btn_05"  formControlName="status" [checked]="(editUser.status==true) ? false: true"   (change) ="userStatus($event,editUser?.id)"   type="checkbox">
+                              <label class="custom-switch-btn" for="btn_05"></label>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+
+                  
+                  <div class="col-sm-12 col-md-12 col-lg-12 groups_maps">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <h5>Roles</h5>
+                      </div>
+                       <div class="col-sm-6 col-md-6 col-lg-6">
+                        <h5 class="space_1">Mappings</h5>
+                      </div>
+                        <div class=" swipe_section">
+                     
+                        <div class="swipe_boxes getvelue">
+                          <ul id="leftdata" class="leftsid"  *ngFor="let role of this.editUser.roles">
+                            <li class="lefttext" *ngIf="!rolePresent" (click)="pushData(role)" [value]="role.id">{{role.name=="ROLE_ADMIN" ? '' : role.name}}</li>
+                            <li class="lefttext" *ngIf="rolePresent" (click)="pushData(role)" [value]="role.id">{{role.name}}</li>
+
+                          </ul>
+                        </div>
+                        <div class="swipe_arrow">
+                          <div class="swipe_btn">
+                          <span class="arrow_1 clickarrow"><img src="assets/images/arrow_1.png"></span>
+                          <span class="arrow_2 clickarrow"><img src="assets/images/arrow_2.png"></span>
+                        </div>
+                        </div>
+                     
+                      
+                        <div class="swipe_boxes getvelue">
+                         <ul id="rightdata" class="rightsid" *ngFor="let role of editUser.userRoles">
+                          <li class="righttext" *ngIf="!rolePresent" (click)="pushUserRole(role)" [value]="role.id">{{role.name=="ROLE_ADMIN" ? '' : role.name}}</li>
+                          <li class="righttext" *ngIf="rolePresent" (click)="pushUserRole(role)" [value]="role.id">{{role.name}}</li>
+                          <!-- <li class="righttext">{{}}</li> -->
+                        </ul>
+                      
+                      
+                      </div>
+                      </div>
+                  
+                    </div>
+
+                </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+ <div class="right_panel_inner border_dashed">
+    <div class="right_panel_box2">
+
+  
+
+        <form class=" user_fileds" [formGroup]="editmanagerForm" >
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label>Manager Name</label>
+                      </div>
+
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+
+                        
+                        <select class="custom-select slects_option" id="manager"  formControlName="managerNameForm" [(ngModel)]="managername" >
+                            <option class="s-smal"  [ngValue]="'none'" disabled>Select Manager</option>
+                      <option [ngValue]="manager"  *ngFor="let manager of editUser.manager" class="s-smal">{{manager.name}}</option>
+                  </select> 
+
+                  
+
+                        <!-- <input type="text" class="form-control" id="mname" [(ngModel)]="editUser.manager.name" name="mname"> -->
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label >Manager Email</label>
+                      </div>
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+                          <input type="email" class="form-control" id="userEmail" formControlName="managerEmail" [ngModel]="managername.email" name="memial" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label >Regions of  Operation</label>
+                      </div>
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+
+                        <select class="custom-select slects_option" id="gds-cr-one" formControlName="userRegion" (change)="regionSelect($event.target.value)">
+                          <option class="s-smal"  [ngValue]="'none'" disabled>Select Regions</option>
+                      <option [ngValue]="regions" *ngFor="let regions of regionList" value={{regions.item_id}} class="s-smal">{{regions.item_text}}</option>
+                 </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label>Country of Oparation</label>
+                      </div>
+
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+                          
+                      <ng-multiselect-dropdown
+                      [placeholder]="'Country of Operation'"
+                      [data]="countryOfOpa"
+                      [(ngModel)]="countryOf"
+                      [settings]="dropdownSettingsTaList"
+                      (onSelect)="countrySelect($event)"
+                      (onSelectAll)="countrySelectAll($event)"
+                      formControlName="countryList" style="
+                      color: #d9d9d9;"                                        
+                    ngDefaultControl>
+                    </ng-multiselect-dropdown>
+                    </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<div class="right_panel_inner">
+    <h4>Therapeutic Areas</h4>
+    <br>
+  <div class="right_panel_box2">
+      <form class=" user_fileds" [formGroup]="taForm">
+          <div class="row">
+              <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <label>Therapeutic Area</label>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+
+                        <select class="custom-select slects_option" id="gds-cr-one" formControlName="therapeuticList" (change)="onTAItemSelect($event.target.value)">
+                            <option class="s-smal"  [ngValue]="'none'" disabled>Select Therapeutic Area</option>
+                        <option *ngFor="let regions of therputicAreaList" value={{regions.item_id}} class="s-smal">{{regions.item_text}}</option>
+                    </select>
+
+                      <!-- <ng-multiselect-dropdown
+                                          [placeholder]="'Therapeutic Area'"
+                                          [data]="therputicAreaList"
+                                          [(ngModel)]="therputicAreaItems"
+                                          [settings]="dropdownSettingsTaList"
+                                          (onSelect)="onTAItemSelect($event)"
+                                          (onSelectAll)="onTASelectAll($event)"
+                                          formControlName="therapeuticList" style="
+                                          color: #d9d9d9;"                                        
+                                        ngDefaultControl>
+                                        </ng-multiselect-dropdown> -->
+                        </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <label>Products</label>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+
+                      <ng-multiselect-dropdown
+                      [placeholder]="'Products'"
+                      [data]="productListTa"
+                      [(ngModel)]="productItemsTa"
+                      [settings]="dropdownSettingsTaList"
+                      (onSelect)="productSelect($event)"
+                      (onSelectAll)="onProductsTASelectAll($event)"
+                      formControlName="productList" style="
+                      color: #d9d9d9;"                                        
+                    ngDefaultControl>
+                    </ng-multiselect-dropdown>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <label >Disease State</label>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+
+                      <ng-multiselect-dropdown
+                                          [placeholder]="'Disease State'"
+                                          [data]="diseaseListTA"
+                                          [(ngModel)]="diseaseItemsList"
+                                          [settings]="dropdownSettingsTaList"
+                                          (onSelect)="disTASelect($event)"
+                                          (onSelectAll)="disTASelectAll($event)"
+                                          formControlName="diseasestateList" style="
+                                          color: #d9d9d9;"                                        
+                                        ngDefaultControl>
+                                        </ng-multiselect-dropdown>
+                        </div>
+                  </div> 
+              </div>
+          
+          </div>
+      </form>
+  </div>
+</div>
+
+
+ <div class="right_panel_inner">
+   <h4>User Therapeutic Areas</h4>
+    <div class="right_panel_box2">
+        <form class=" user_fileds" [formGroup]="taForm">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label>Therapeutic Area</label>
+                      </div>
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+                        <ng-multiselect-dropdown
+                                            [placeholder]="'Therapeutic Area'"
+                                            [data]="dropdownList"
+                                            [(ngModel)]="selectedItems"
+                                            [settings]="dropdownSettingsTa"
+                                            (onSelect)="onItemSelect($event)"
+                                            (onSelectAll)="onSelectAll($event)"
+                                            formControlName="therapeutic" style="
+                                            color: #d9d9d9;"                                        
+                                          ngDefaultControl>
+                                          </ng-multiselect-dropdown>
+                          </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label>Products</label>
+                      </div>
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Products'"
+                        [data]="productList"
+                        [(ngModel)]="productItems"
+                        [settings]="dropdownSettings"
+                        (onSelect)="productSelect($event)"
+                        (onSelectAll)="onProductsSelectAll($event)"
+                        formControlName="product" style="
+                        color: #d9d9d9;"                                        
+                      ngDefaultControl>
+                      </ng-multiselect-dropdown>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group row">
+                      <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label >Disease State</label>
+                      </div>
+                      <div class="col-sm-8 col-md-8 col-lg-8">
+
+                        <ng-multiselect-dropdown
+                                            [placeholder]="'Disease State'"
+                                            [data]="diseaseList"
+                                            [(ngModel)]="diseaseItems"
+                                            [settings]="dropdownSettings"
+                                            (onSelect)="diseaseSelect($event)"
+                                            (onSelectAll)="onDiseaseSelectAll($event)"
+                                            formControlName="diseasestate" style="
+                                            color: #d9d9d9;"                                        
+                                          ngDefaultControl>
+                                          </ng-multiselect-dropdown>
+                          </div>
+                    </div> 
+                </div>
+                
+                <div class="col-sm-12 col-md-12 col-lg-12 groups_maps">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                      <h5>Groups</h5>
+                    </div>
+                     <div class="col-sm-6 col-md-6 col-lg-6">
+                      <h5 class="space_1">Mappings</h5>
+                    </div>
+                      <div class=" swipe_section">
+                   
+                      <div class="swipe_boxes getvelue">
+                        <ul id="leftdata" class="leftsid"  *ngFor="let group of editUser.groups">
+                          <li class="lefttext" (click)="pushGroupData(group)" [value]="group.id">{{group.name}}</li>
+                        </ul>
+                      </div>
+                      <div class="swipe_arrow">
+                        <div class="swipe_btn">
+                        <span class="arrow_1 clickarrow"><img src="assets/images/arrow_1.png"></span>
+                        <span class="arrow_2 clickarrow"><img src="assets/images/arrow_2.png"></span>
+                      </div>
+                      </div>
+                   
+                    
+                      <div class="swipe_boxes getvelue">
+                       <ul id="rightdata" class="rightsid" *ngFor="let userGroup of editUser.userGroups">
+                        <li class="righttext" (click)="pushUserGroup(userGroup)" [value]="userGroup.id">{{userGroup.name}}</li>
+                        <!-- <li class="righttext">{{}}</li> -->
+                      </ul>
+                    
+                    
+                    </div>
+                    </div>
+                
+                  </div>
+
+              </div>
+            </div>
+            <div class="buttons">
+              <button type="button" class=" btn-small" routerLink="/admin">Cancel</button>
+              <button type="button" class=" btn-small bnt_blue" (click)="editUserProfiles()" >Apply</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div> 
+
+</section> <!-- Right Panel End Here -->
+</div>
+</div>
+</main>
+
+
+
+
+   
+
+
+
+

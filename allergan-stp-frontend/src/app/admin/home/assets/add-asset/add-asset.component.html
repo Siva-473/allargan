@@ -1,0 +1,428 @@
+<app-admin-top-nav></app-admin-top-nav>
+<router-outlet></router-outlet>
+<main class="main_container">
+  <div class="container">
+    <div class="main_con_inner">
+      <app-admin-side-nav></app-admin-side-nav>
+      <!-- right section  start -->
+      <section class="right_panel">
+        <div class="user_assets hide_tab active" id="pop_3">
+          <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+            <div class="assets_panel">
+              <div class="right_panel_inner border_dashed">
+                <div class="rph_header">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 rph_left">
+                      <h5>Assets</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="right_panel_box2">
+                  <div class=" user_fileds">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Asset Type</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="assetType"
+                              [ngClass]="{ 'is-invalid': submitted && f.assetType.errors }"
+                              class="custom-select slects_option" (change)="onSelectAssetType($event.target.value)">
+                              <option value="">Select AssetType</option>
+                              <option *ngFor="let assetType of assetTypes" value={{assetType.id}}>{{assetType.userName}}
+                              </option>
+                            </select>
+                            <div *ngIf="submitted && f.assetType.errors" class="invalid-feedback">
+                              <div *ngIf="f.assetType.errors.required">Choose AssetType</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="lastname">Title</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input type="text" formControlName="title" class="form-control" id=""
+                              [ngClass]="{ 'is-invalid': submitted && f.title.errors }" placeholder="" name="lastname">
+                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                              <div *ngIf="f.title.errors.required">Title is required</div>
+                              <div *ngIf="f.title.errors.minlength">Title must be at least 3 characters</div>
+                              <div *ngIf="f.title.errors.maxlength">Title must be max 50 characters</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="">Description</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input type="" formControlName="description" class="form-control"
+                              [ngClass]="{ 'is-invalid': submitted && f.description.errors }" id="mail" placeholder=""
+                              name="">
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                              <div *ngIf="f.description.errors.required">Description is required</div>
+                              <div *ngIf="f.description.errors.minlength">Description must be at least 3 characters
+                              </div>
+                              <div *ngIf="f.description.errors.maxlength">Description must be max 250 characters</div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="form-group row" *ngIf="showContentTypeDropDown"> -->
+                        <!-- <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <label >Content Type</label>
+                                          </div> -->
+                        <!-- <div class="col-sm-8 col-md-8 col-lg-8">
+                                            <select formControlName="contentType" class="custom-select slects_option" [ngClass]="{ 'is-invalid': submitted && showcontentTypeError }" (change)="onSelectContentType($event.target.value)">
+                                              <option value="">Select ContentType</option>
+                                              <option *ngFor="let contentType of contentTypes" value={{contentType.id}} >{{contentType.name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && showcontentTypeError" class="invalid-feedback">
+                                                <div>Choose ContentType</div>
+                                            </div> 
+                                        </div> -->
+                        <!-- </div> -->
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Duration (min)</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" formControlName="duration" class="form-control" id="mail"
+                              placeholder="" name="">
+                            <div *ngIf="submitted && f.duration.errors" class="">
+                              <div *ngIf="f.duration.errors.required">Duration is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Therapeutic Area</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="therapeuticArea"
+                              [ngClass]="{ 'is-invalid': submitted && f.therapeuticArea.errors }"
+                              class="custom-select slects_option"
+                              (change)="onSelectTherapeuticArea($event.target.value)">
+                              <option value="">Select TherapeuticArea</option>
+                              <option *ngFor="let therapeuticArea of therapeuticAreas" value={{therapeuticArea.id}}>
+                                {{therapeuticArea.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.therapeuticArea.errors" class="invalid-feedback">
+                              <div *ngIf="f.therapeuticArea.errors.required">Choose TherapeuticArea</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Disease State</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="diseaseState"
+                              [ngClass]="{ 'is-invalid': submitted && showDSError }" class="custom-select slects_option"
+                              (change)="onSelectDiseaseState($event.target.value)">
+                              <option value="">Select DiseaseStates</option>
+                              <option *ngFor="let diseaseState of diseaseStates" value={{diseaseState.id}}>
+                                {{diseaseState.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && showDSError" class="invalid-feedback">
+                              <div>Choose DiseaseState</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- </form> -->
+                </div>
+              </div>
+
+              <div class="right_panel_inner border_dashed">
+                <div class="right_panel_box2">
+                  <div class="user_fileds">
+
+                    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{message}}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Product</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="product"
+                              [ngClass]="{ 'is-invalid': submitted && showProductError }"
+                              class="custom-select slects_option" (change)="onSelectProduct($event.target.value)">
+                              <option value="">Select Product</option>
+                              <option *ngFor="let product of products" value={{product.id}}>{{product.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && showProductError" class="invalid-feedback">
+                              <div>Choose Product</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Region</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="region" class="custom-select slects_option"
+                              (change)="onSelectRegion($event.target.value)">
+                              <option value="">Select Region</option>
+                              <option *ngFor="let region of regions" value={{region.id}}>{{region.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.region.errors" class="">
+                              <div *ngIf="f.region.errors.required">Choose Region</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Country</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="country" class="custom-select slects_option">
+                              <option value="">Select Country</option>
+                              <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.country.errors" class="">
+                              <div *ngIf="f.country.errors.required">Choose Country</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Expiration Duration (days)</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" formControlName="expiration" class="form-control" id="mail"
+                              placeholder="" name="">
+                            <div *ngIf="submitted && f.expiration.errors" class="">
+                              <div *ngIf="f.expiration.errors.required">Expiration Duration (days) Required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Source</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="source" [ngClass]="{ 'is-invalid': submitted && f.source.errors }"
+                              class="custom-select slects_option" (change)="onSelectSource($event.target.value)">
+                              <option value="">Select Source</option>
+                              <option *ngFor="let source of sources" value={{source.id}}>{{source.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.source.errors" class="invalid-feedback">
+                              <div *ngIf="f.source.errors.required">Choose Source</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="showQuize && showUploadAsset" class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="createdby">Link</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <div class="custom-file upload_file">
+                              <input type="file" class="custom-file-input" id="customFile"
+                                (change)="onFileSelect($event)"
+                                [ngClass]="{ 'is-invalid': submitted && showFileUploadError }">
+                              <label class="custom-file-label" for="customFile">{{fileName}}</label>
+                              <div *ngIf="submitted && showFileUploadError" class="invalid-feedback">
+                                <div>Upload a file</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="showQuizDropDown" class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="createdby">Quiz</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <select formControlName="quize" class="custom-select slects_option"
+                              [ngClass]="{ 'is-invalid': submitted && showQuizError }" [(ngModel)]="alredyQuize"
+                              (change)="onSelectQuiz($event.target.value)">
+                              <option value="">Select Quiz</option>
+                              <option *ngFor="let quize of quizes" value={{quize.id}}>{{quize.title}}</option>
+                            </select>
+                            <div *ngIf="submitted && showQuizError" class="invalid-feedback">
+                              <div>Choose Quiz</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="showLink" class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="createdby">Link</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input formControlName="deepLink" type="" class="form-control" id="mail" placeholder=""
+                              name="" (change)="onChangeLink($event.target.value)"
+                              [ngClass]="{ 'is-invalid': submitted && showLinkError }">
+                            <div *ngIf="submitted && showLinkError" class="invalid-feedback">
+                              <div>{{showLinkErrorMsg}}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="updadayby">Mandatory</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8 user_buts mandatory">
+                            <div class="">
+                              <input type="radio" formControlName="mandatory" [value]="true">
+                              <label>Yes</label>
+                            </div>
+                            <div class="">
+                              <input type="radio" formControlName="mandatory" [value]="false">
+                              <label>No</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- <div class="form-group row"  *ngIf="disableSequence">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label for="updadayby">Sequence Number</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input name="search" autocomplete="disabled" class="form-control" numbersOnly  formControlName="searchNumber" type="text" placeholder="Search"
+                            (keyup)="fetchItemDetailsSearch(searchcontent)" 
+                            [(ngModel)]="searchcontent">
+
+                            <div *ngIf="searchlist">
+                              <ul class="auto-complete">
+                                <li *ngFor="let item of searchlist">{{item}}</li>
+                              </ul>
+                              </div>
+
+                          </div>
+                        </div> -->
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="right_panel_inner">
+                <div class="right_panel_box2">
+                  <div class=" user_fileds">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                          <div class="col-sm-4 col-md-4 col-lg-4">
+                            <label>Points</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                            <input formControlName="awardPoints" type="number" class="form-control" id="mail"
+                              placeholder="" name="">
+                            <div *ngIf="submitted && f.awardPoints.errors" class="">
+                              <div *ngIf="f.awardPoints.errors.required">Points Required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group row">
+                          <!-- <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <label for="mname">Status</label>
+                                          </div> -->
+                          <!-- <div class="col-sm-8 col-md-8 col-lg-8">
+                                               <div class="custom-switch custom-switch-label-onoff d-flex">
+                                                 
+                                                  <input class="custom-switch-input" id="btn_00" formControlName ="status"  [checked]="(assets?.active==true) ? false: true"  type="checkbox">
+                                                  <label class="custom-switch-btn" for="btn_013"></label>
+                                              </div>
+                                           
+                                              </div> -->
+                        </div>
+                      </div>
+                      <div *ngIf="showGroup" class="col-sm-12 col-md-12 col-lg-12 groups_maps">
+                        <div class="row">
+                          <div class="col-sm-6 col-md-6 col-lg-6">
+                            <h5>Groups</h5>
+                          </div>
+                          <div class="col-sm-6 col-md-6 col-lg-6">
+                            <h5 class="space_1">Mappings</h5>
+                          </div>
+                          <div class=" swipe_section">
+                            <div class="swipe_boxes">
+                              <ul *ngFor="let group of groups">
+                                <li (click)="pushRight(group)" [value]="group.id">{{group.name}}</li>
+                                <!-- <li>Non MSL Group</li>
+                                            <li>Glaucoma Group.</li> -->
+                              </ul>
+                            </div>
+                            <div class="swipe_arrow">
+                              <div class="swipe_btn">
+                                <span class="arrow_1"><img src="assets/images/arrow_1.png"></span>
+                                <span class="arrow_2"><img src="assets/images/arrow_2.png"></span>
+                              </div>
+                            </div>
+                            <div class="swipe_boxes">
+                              <ul *ngFor="let assetGroup of assetMappedGroups">
+                                <li (click)="pushLeft(assetGroup)" [value]="assetGroup.id">{{assetGroup.name}}</li>
+                              </ul>
+                            </div>
+                          </div>
+
+                        </div>
+                        <!-- <div *ngIf="submitted && showGroupError" >
+                                          <div style="width: 100%;
+                                          margin-top: .25rem;
+                                          font-size: 85%;
+                                          color: #dc3545;">Map atleast one Group</div>
+                                      </div>  -->
+
+                      </div>
+                    </div>
+                    <div class="form-group row mt-5 autoass">
+
+                      <div class="col-sm-6 col-md-6 col-lg-6 user_buts mandatory">
+                        <label class="mr-3">Auto Assignment</label>
+                        <div class="">
+                          <input type="radio" formControlName="autoAssin" [value]="true"
+                            (change)="onClickAutoAssign(true)">
+                          <label>Yes</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" formControlName="autoAssin" [value]="false"
+                            (change)="onClickAutoAssign(false)">
+                          <label>No</label>
+                        </div>
+
+                      </div>
+                    </div>
+                    <input type="hidden" formControlName="id" class="form-control " name="id" [value]="0">
+                    <div class="buttons">
+                      <button type="button" class=" btn-small" [routerLink]="['/admin/asset']">Cancel</button>
+                      <button type="submit" class=" btn-small bnt_blue">Apply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!---- User Aseets  End Here ---->
+      </section>
+    </div>
+  </div>
+</main>
+<footer class="fot_main">
+  <div class="container">
+    <div class="fot_inner">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <p>© ALLERGAN 2019</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

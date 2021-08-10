@@ -1,0 +1,171 @@
+<div>
+<div class="min_contner silde_14 scenario_01">
+    <app-topics></app-topics>
+
+ <section class="section_tab dragblslide_1 dragbaltab">
+                <div class="auto-container">
+                    <div class="overlay" *ngIf="loadAll"></div>
+                    <div class="loader" *ngIf="loadAll" id="loader-2">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11 col-sm-12">
+                            <div class="menu-topics">
+                                <div class="topic-path">
+                                    <div class="path path1"></div>
+                                    <div class="path path2"></div>
+                                    <div class="path path3 "></div>
+                                    <div class="path path4 dotted"></div>
+                                    <!-- <div class="path path5 dotted"></div> -->
+                                </div>
+                                <div class="topic-num"  *ngIf="showNotCompleted" [ngClass]="{'completed': showNotCompleted,'locks':!showNotCompleted}" (click)="completed('/topic')"></div>
+                                <div class="topic-num" (click)="count>=1 ?openAsset(assetUserJourney[0]) : unAssignedAssets('/topic')" (mouseover)="mouseOvered1=true" (mouseout)="mouseOvered1=false"  [ngClass]="assetUserJourney?getJourneyImage(count,assetUserJourney[0],mouseOvered1,showNotCompleted):''">
+                                    <div class="trending-topic dp_down" [ngClass]="assetUserJourney && assetUserJourney[0]?.asset.contentType.image">
+                                        <div class="hottips">
+                                            <p class="text_hip1">{{assetUserJourney && assetUserJourney[0]?.asset.title}}</p>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && assetUserJourney[0]?.assetCompletionStatus==1">In Progress</div>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && (assetUserJourney[0]?.assetCompletionStatus==0 ||assetUserJourney[0]?.assetCompletionStatus==null)">Yet to start</div>
+                                            <div class="inprogrss_bar">
+                                                <div class="outer-with">
+                                                    <div class="cur-prog" *ngIf="assetUserJourney && assetUserJourney[0]?.assetCompletionStatus==1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="text-para-1">{{assetUserJourney && assetUserJourney[0]?.asset.description}}</p>
+                                            <div class="progrss-details">
+                                                <span class="day-remain">{{ assetUserJourney && assetUserJourney[0]?.dueDays}} days remaining</span>
+                                                <!-- <span class="points">{{ assetUserJourney && assetUserJourney[0]?.asset.awardPoints}} points</span> -->
+                                            </div>
+                                            <div *ngIf=" assetUserJourney && assetUserJourney[0]?.asset.contentType.id!=8 && assetUserJourney[0]?.assetCompletionStatus==1" class="mark_btn" (click)="markAsComplete(assetUserJourney[0]?.id);$event.stopPropagation();">Mark as complete</div>
+                                        </div>
+                                    </div>
+                                </div>
+                              <!--inprogress-->
+                                <div class="topic-num"  (click)="count>=2 ? openAsset(assetUserJourney[1]) : unAssignedAssets('/topic')" (mouseover)="mouseOvered2=true" (mouseout)="mouseOvered2=false" [ngClass]="assetUserJourney?getJourneyImage(count,assetUserJourney[1],mouseOvered2,showNotCompleted):''">
+                                   
+                                    <div class="trending-topic dp_down" [ngClass]="assetUserJourney && assetUserJourney[1]?.asset.contentType.image">
+                                        <div class="hottips">
+                                            <p class="text_hip1">{{assetUserJourney && assetUserJourney[1]?.asset.title}}</p>
+                                            <!--assetCompletionStatus-->
+                                            <div class="inprogrss" *ngIf="assetUserJourney && assetUserJourney[1]?.assetCompletionStatus==1">In Progress</div>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && (assetUserJourney[1]?.assetCompletionStatus==0 ||assetUserJourney[1]?.assetCompletionStatus==null)">Yet to start</div>
+                                            <div class="inprogrss_bar">
+                                                <div class="outer-with">
+
+                                                    <div class="cur-prog" *ngIf="assetUserJourney && assetUserJourney[1]?.assetCompletionStatus==1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="text-para-1">{{assetUserJourney && assetUserJourney[1]?.asset.description}}</p>
+                                            <div class="progrss-details">
+                                                <span class="day-remain">{{assetUserJourney && assetUserJourney[1]?.dueDays}} days remaining</span>
+                                                <!-- <span class="points">{{assetUserJourney && assetUserJourney[1]?.asset.awardPoints}} points</span> -->
+                                            </div>
+                                            <div  *ngIf="assetUserJourney && assetUserJourney[1]?.asset.contentType.id!==8 && assetUserJourney[1]?.assetCompletionStatus==1" class="mark_btn" (click)="markAsComplete(assetUserJourney[1]?.id);$event.stopPropagation();">Mark as complete</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="topic-num" (click)="count>=3 ? openAsset(assetUserJourney[2]) : unAssignedAssets('/topic')"  (mouseover)="mouseOvered3=true" (mouseout)="mouseOvered3=false"  [ngClass]="assetUserJourney?getJourneyImage(count,assetUserJourney[2],mouseOvered3,showNotCompleted):''"> 
+                                        <div class="topic_points" (click)="isClicked($event)" (mouseover)="isMouseHover($event)"   *ngIf="showNotCompleted  && assetUserJourney?.length-decrCount>0">+<span>{{assetUserJourney && assetUserJourney.length-decrCount}}</span></div>   
+                                    <div class="trending-topic dp_down" [ngClass]="assetUserJourney && assetUserJourney[2]?.asset.contentType.image">
+                                        <div class="hottips">
+                                            <p class="text_hip1">{{assetUserJourney && assetUserJourney[2]?.asset.title}}</p>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && assetUserJourney[2]?.assetCompletionStatus==1">In Progress</div>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && (assetUserJourney[2]?.assetCompletionStatus==0 ||assetUserJourney[2]?.assetCompletionStatus==null)">Yet to start</div>
+                                            <div class="inprogrss_bar">
+                                                <div class="outer-with">
+                                                    <div class="cur-prog" *ngIf="assetUserJourney && assetUserJourney[2]?.assetCompletionStatus==1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="text-para-1">{{assetUserJourney && assetUserJourney[2]?.asset.description}}</p>
+                                            <div class="progrss-details">
+                                                <span class="day-remain">{{assetUserJourney && assetUserJourney[2]?.dueDays}} days remaining</span>
+                                                <!-- <span class="points">{{assetUserJourney && assetUserJourney[2]?.asset.awardPoints}} points</span> -->
+                                            </div>
+                                            <div *ngIf="assetUserJourney && assetUserJourney[2]?.asset.contentType.id!=8 && assetUserJourney[2]?.assetCompletionStatus==1" class="mark_btn" (click)="markAsComplete(assetUserJourney[2]?.id);$event.stopPropagation();">Mark as complete</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="topic-num"   *ngIf="!showNotCompleted" (click)="count>=4? openAsset(assetUserJourney[3]) :unAssignedAssets('/topic')" (mouseover)="mouseOvered4=true" (mouseout)="mouseOvered4=false"  [ngClass]="assetUserJourney?getJourneyImage(count,assetUserJourney[3],mouseOvered4,showNotCompleted):''">                                 
+                                <div class="topic_points" (click)="isClicked($event)" (mouseover)="isMouseHover($event)"   *ngIf="!showNotCompleted && assetUserJourney?.length-4>0">+<span>{{assetUserJourney && assetUserJourney.length-decrCount}}</span></div>
+                                    <div class="trending-topic dp_down" [ngClass]="assetUserJourney && assetUserJourney[3]?.asset.contentType.image">
+                                        <div class="hottips">
+                                            <p class="text_hip1">{{assetUserJourney && assetUserJourney[3]?.asset.title}}</p>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && assetUserJourney[3]?.assetCompletionStatus==1">In Progress</div>
+                                            <div class="inprogrss" *ngIf="assetUserJourney && (assetUserJourney[3]?.assetCompletionStatus==0 ||assetUserJourney[3]?.assetCompletionStatus==null)">Yet to start</div>
+                                            <div class="inprogrss_bar">
+                                                <div class="outer-with">
+                                                    <div class="cur-prog" *ngIf="assetUserJourney && assetUserJourney[3]?.assetCompletionStatus==1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="text-para-1">{{assetUserJourney && assetUserJourney[3]?.asset.description}}</p>
+                                            <div class="progrss-details">
+                                                <span class="day-remain">{{assetUserJourney && assetUserJourney[3]?.dueDays}} days remaining</span> 
+                                                <!-- <span class="points">{{assetUserJourney && assetUserJourney[3]?.asset.awardPoints}} points</span> -->
+                                             </div>
+                                            <div *ngIf="assetUserJourney && assetUserJourney[3]?.asset.contentType.id!=8 && assetUserJourney[3]?.assetCompletionStatus==1" class="mark_btn" (click)="markAsComplete(assetUserJourney[3]?.id);$event.stopPropagation();">Mark as complete</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+								
+ 
+ 
+                                        <!-- <div class="topic-num" *ngIf="!showNotCompleted" (click)=" count>=4 ? openAsset(assetUserJourney[4]):  unAssignedAssets('/topic')" (mouseover)="mouseOvered5=true" (mouseout)="mouseOvered5=false"  [ngClass]="assetUserJourney?getJourneyImage(count,assetUserJourney[4],mouseOvered5):''">
+                                        <div class="topic_points" (click)="assignedAssets(assetUserJourney.length-5,'/topic');$event.stopPropagation();" *ngIf="!showNotCompleted && assetUserJourney?.length-5>0">+m<span>{{assetUserJourney && assetUserJourney.length-5}}</span></div>
+                                       
+
+                                        <div class="trending-topic dp_down" [ngClass]="assetUserJourney?getAssetImage(assetUserJourney[4]?.asset.fileName):'pdf'">
+                                                <div class="hottips">
+                                                    <p class="text_hip1">{{assetUserJourney && assetUserJourney[4]?.asset.title}}</p>
+                                                    <div class="inprogrss" *ngIf="assetUserJourney && assetUserJourney[4]?.assetCompletionStatus==1">In Progress</div>
+                                                    <div class="inprogrss" *ngIf="assetUserJourney && (assetUserJourney[4]?.assetCompletionStatus==0 ||assetUserJourney[4]?.assetCompletionStatus==null)">Yet to start</div>
+                                                    <div class="inprogrss_bar">
+                                                        <div class="outer-with">
+                                                            <div class="cur-prog" *ngIf="assetUserJourney && assetUserJourney[4]?.assetCompletionStatus==1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-para-1">{{assetUserJourney && assetUserJourney[4]?.asset.description}}</p>
+                                                    <div class="progrss-details">
+                                                        <span class="day-remain">{{ assetUserJourney && assetUserJourney[4]?.dueDays}} days remaining</span>
+                                                         <span class="points">{{assetUserJourney && assetUserJourney[4]?.asset.awardPoints}} points</span>
+                                                    </div>
+                                                    <div *ngIf="assetUserJourney && assetUserJourney[4]?.assetCompletionStatus==1" class="mark_btn" (click)="markAsComplete(assetUserJourney[4]?.id);$event.stopPropagation();">Mark as complete</div>
+                                                </div>
+                                            </div>
+                                </div> -->
+                                <div *ngIf="!showNotCompleted" (click)="unAssignedAssets('/topic')" class="topic-num"></div>
+                                <div *ngIf="showNotCompleted && count>=0" (click)="unAssignedAssets('/topic')" class="topic-num"></div>
+                            </div>
+                            
+                            <div class="basecamp">
+                                <span>basecamp</span>
+                                <span><img src="assets/images/basecamp-icon.png" alt=""></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <footer>
+            <div class="auto-container">
+                <div class="row ">
+                    <div class="col-md-12 ">
+                        <p class="footer1 ">© ALLERGAN 2019</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div *ngIf="assetloader" >
+            <div class="loader">Loading...</div>
+            <div class="loaderOverlay"></div>
+            <div>
+<!-- <app-alerts></app-alerts> -->
+        </div>
+        </div>

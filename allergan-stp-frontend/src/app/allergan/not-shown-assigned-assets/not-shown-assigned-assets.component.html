@@ -1,0 +1,131 @@
+
+    <div class="{{thisContainerClass}}">
+         
+        <app-topics [getTopicsComponent]="isSearchActive"></app-topics>
+      
+          <div class="boxed_wrapper">
+               
+              <!-- popUP -->
+              <div class="select_course small_pop">
+                 <section class="pop_container">
+                    <div class="pop-content">
+                          <div class="pop-head">
+                              <div class="row">
+                             <div class="colse_btn"><button (click)="goBack(url)"></button></div>
+                             <div class="col-md-6 col-sm-6">
+                                  <h3><span></span>Pending Courses</h3>
+                              </div>
+                        
+                          </div>
+                       </div>
+                       <div id="pending_course" class="pop-scroll-bx nano">
+                          <div class="scroll-bx-inner">
+                             <div class="table-responsive small_pop_items">
+                                 <table class=" table">
+                                      <thead>
+                                        <tr>
+                                          <th>Type</th>
+                                          <th>Course Details</th>
+                                          <th>Mandatory/Optional</th>
+                                          <th>Days Remaining</th>
+                                          <th>Mark Complete</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let course of courses">
+                                          <td >   
+                                             <span class="{{course?.asset?.contentType?.image}}_btn"></span>
+                                            </td>
+                                           
+                                          <td>
+                                              <a [ngClass]="{'clickable': course.asset.contentType?.id!=8}"(click)="course.asset.contentType?.id!=8?openAsset(course):''">
+                                                  <span>
+                                                      {{course?.asset?.title}}
+                                                  </span>
+                                              </a>
+                                              <!-- <span> {{course?.asset?.title}}</span> -->
+                                          </td>
+                                          <td>
+                                            <span> {{course?.asset?.mandatory==true?"Mandatory":"Optional"}}</span>
+                                        </td>
+                                        <td><span class="">{{course?.dueDays}}</span></td>
+                                        <td>
+                                            <span *ngIf="course.asset.contentType?.id!=8" [ngClass]="course?.assetCompletionStatus==1?'btn btn-complete':'btn btn-complete-disabled'" (click)="course?.assetCompletionStatus==1?markAsComplete(course?.id,$event):''">Mark Complete</span>
+                                        </td>
+                                        </tr>
+
+                                        <!-- <tr>
+                                          <td><span class="icon note_icon "></span></td>
+                                          <td>
+                                              <span>Assesment</span>
+                                          </td>
+                                          
+                                          <td><span class="">10</span></td>
+                                        </tr>
+                                        <tr class="done_course">
+                                          <td><span class="icon notepad_icon "></span></td>
+                                          <td>
+                                              <span>Module 6</span>
+                                          </td>
+                                          
+                                          <td><span class="">10</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><span class="icon notepad_icon "></span></td>
+                                          <td>
+                                              <span>Module 7</span>
+                                          </td>
+                                          
+                                          <td><span class="">15</span></td>
+                                        </tr>
+                                        <tr class="done_course">
+                                          <td><span class="icon notepad_icon "></span></td>
+                                          <td>
+                                              <span>Module 8</span>
+                                          </td>
+                                          
+                                          <td><span class="">20</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><span class="icon type_icon "></span></td>
+                                          <td>
+                                              <span>Module 9</span>
+                                          </td>
+                                          
+                                          <td><span class="">20</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><span class="icon note_icon "></span></td>
+                                          <td>
+                                              <span>Module 10</span>
+                                          </td>
+                                        
+                                          <td><span class="">25</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><span class="icon note_icon "></span></td>
+                                          <td>
+                                              <span>Assesment</span>
+                                          </td>
+                                          <td><span class="">30</span></td>
+                                        </tr> -->
+                                                                    
+                                      </tbody>
+                                  </table>
+                             </div>
+                            
+                          </div>
+
+                       </div>
+                    </div>
+                    <!-- <div class="form_btns ">
+                          <button class="cancel_btn popcan_btn" (click)="cancel()" type="button">Cancel</button>
+                      </div> -->
+                 </section>
+
+
+              </div>
+              
+          </div>
+          <div class="overlay"></div>
+      </div>

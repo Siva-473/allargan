@@ -1,0 +1,13 @@
+.mycontainer {
+    display: inline-block;
+    float: none;
+    color: #fff;}
+
+.section_tab {
+    /* top: 25% !important; */
+}
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }

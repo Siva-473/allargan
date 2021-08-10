@@ -1,0 +1,9 @@
+* {
+    font-size: 1.3rem;
+}
+.invalid-txt {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}

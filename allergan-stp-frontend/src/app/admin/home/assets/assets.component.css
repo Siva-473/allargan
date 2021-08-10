@@ -1,0 +1,55 @@
+.wmd-view-topscroll, .wmd-view {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.wmd-view-topscroll::-webkit-scrollbar-track, .wmd-view::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.wmd-view-topscroll::-webkit-scrollbar, .wmd-view::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+	background-color: #F5F5F5;
+}
+
+.wmd-view-topscroll::-webkit-scrollbar-thumb, .wmd-view::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+.table {
+	table-layout: fixed;
+}
+.tableHead > th:nth-child(1) {
+	width: 250px;
+}
+.tableHead > th:nth-child(2) {
+	width: 125px;
+}
+.tableHead > th:nth-child(3) {
+	width: 115px;
+}
+.tableHead > th:nth-child(4) {
+	width: 75px;
+}
+.tableHead > th:nth-child(5) {
+	width: 60px;
+}
+.tableHead > th:nth-child(6) {
+	width: 75px;
+}
+.tableHead > th:nth-child(7) {
+	width: 25px;
+}
+.tableHead > th:nth-child(8) {
+	width: 25px;
+}
+.query, .delete {
+	margin:  0px auto;
+}

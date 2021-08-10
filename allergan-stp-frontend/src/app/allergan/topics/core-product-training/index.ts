@@ -1,0 +1,1 @@
+﻿export * from './core-product-training.component';

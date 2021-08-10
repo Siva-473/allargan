@@ -1,0 +1,25 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7)
+}
+.small_pop .pop-head {
+    position: relative;
+}
+
+.btn-complete-disabled {
+    background-color: #e6e6e6;
+    cursor: not-allowed !important;
+}
+.btn-complete {
+    background-color: #5f259f !important;
+    cursor: pointer !important;
+    color: #fff;
+}
+.select_course.small_pop .clickable{
+    color: blue;
+    cursor: pointer;
+}
